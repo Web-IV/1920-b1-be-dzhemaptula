@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\dzhem\\OneDrive\\Documents\\HoGent\\2019-20\\Web IV\\1920-a2-be-dzhemaptula\\ZoundAPI\\ZoundAPI\\ZoundAPI.csproj": {}
+    "C:\\Users\\dzhem\\OneDrive\\Documents\\HoGent\\2019-20\\Web IV\\1920-b1-be-dzhemaptula\\ZoundAPI\\ZoundAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\dzhem\\OneDrive\\Documents\\HoGent\\2019-20\\Web IV\\1920-a2-be-dzhemaptula\\ZoundAPI\\ZoundAPI\\ZoundAPI.csproj": {
+    "C:\\Users\\dzhem\\OneDrive\\Documents\\HoGent\\2019-20\\Web IV\\1920-b1-be-dzhemaptula\\ZoundAPI\\ZoundAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\dzhem\\OneDrive\\Documents\\HoGent\\2019-20\\Web IV\\1920-a2-be-dzhemaptula\\ZoundAPI\\ZoundAPI\\ZoundAPI.csproj",
+        "projectUniqueName": "C:\\Users\\dzhem\\OneDrive\\Documents\\HoGent\\2019-20\\Web IV\\1920-b1-be-dzhemaptula\\ZoundAPI\\ZoundAPI.csproj",
         "projectName": "ZoundAPI",
-        "projectPath": "C:\\Users\\dzhem\\OneDrive\\Documents\\HoGent\\2019-20\\Web IV\\1920-a2-be-dzhemaptula\\ZoundAPI\\ZoundAPI\\ZoundAPI.csproj",
+        "projectPath": "C:\\Users\\dzhem\\OneDrive\\Documents\\HoGent\\2019-20\\Web IV\\1920-b1-be-dzhemaptula\\ZoundAPI\\ZoundAPI.csproj",
         "packagesPath": "C:\\Users\\dzhem\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\dzhem\\OneDrive\\Documents\\HoGent\\2019-20\\Web IV\\1920-a2-be-dzhemaptula\\ZoundAPI\\ZoundAPI\\obj\\",
+        "outputPath": "C:\\Users\\dzhem\\OneDrive\\Documents\\HoGent\\2019-20\\Web IV\\1920-b1-be-dzhemaptula\\ZoundAPI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\",
@@ -43,23 +43,39 @@
       "frameworks": {
         "netcoreapp3.1": {
           "dependencies": {
+            "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[3.1.2, )"
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[3.1.2, )"
+            },
+            "Microsoft.AspNetCore.Identity.UI": {
+              "target": "Package",
+              "version": "[3.1.2, )"
+            },
+            "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation": {
+              "target": "Package",
+              "version": "[3.1.2, )"
+            },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[3.1.0-preview1.19506.2, )"
+              "version": "[3.1.2, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[3.1.0-preview1.19506.2, )"
+              "version": "[3.1.2, )"
             },
             "Microsoft.Extensions.Logging.Debug": {
               "target": "Package",
-              "version": "[3.1.0-preview1.19506.1, )"
+              "version": "[3.1.2, )"
             },
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
-              "version": "[3.1.0-preview1-19509-03, )"
+              "version": "[3.1.1, )"
             }
           },
           "imports": [
