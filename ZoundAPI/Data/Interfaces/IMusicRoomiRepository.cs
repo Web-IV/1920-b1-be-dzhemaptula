@@ -9,8 +9,8 @@ namespace ZoundAPI.Data.Interfaces
     public interface IMusicRoomRepository
     {
         MusicRoom GetById(int id);
-        ICollection<User> GetMembers();
-        ICollection<Song> GetQueuedSongs();
+        ICollection<User> GetMembersByRoomId(int id);
+        ICollection<Song> GetQueuedSongsByRoomId(int id);
         void SaveChanges();
         void Add(MusicRoom room);
     }

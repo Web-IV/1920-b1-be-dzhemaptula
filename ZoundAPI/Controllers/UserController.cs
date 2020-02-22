@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ZoundAPI.Controllers
 {
-    public class AccountController : Controller
+    public class UserController : Controller
     {
         public IActionResult Index()
         {

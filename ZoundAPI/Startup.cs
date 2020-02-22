@@ -7,6 +7,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Security.Claims;
 using ZoundAPI.Data;
+using ZoundAPI.Data.Interfaces;
+using ZoundAPI.Data.Repositories;
+using ZoundAPI.Models.Domain;
 
 namespace ZoundAPI
 {
@@ -25,7 +28,17 @@ namespace ZoundAPI
             services.AddDbContext<ZoundContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>()
+            services.AddIdentity<User, IdentityRole>(o =>
+            {
+                o.Password.RequireDigit = false;
+                o.Password.RequireUppercase = false;
+                o.Password.RequiredLength = 2;
+                o.Password.RequireLowercase = false;
+                o.Password.RequireNonAlphanumeric = false;
+
+                o.User.RequireUniqueEmail = true;
+            }
+            )
                 .AddEntityFrameworkStores<ZoundContext>();
             services.AddAuthorization(options =>
             {
@@ -36,10 +49,15 @@ namespace ZoundAPI
                 .AddRazorRuntimeCompilation();
             services.AddRazorPages();
             services.AddSession();
+            services.AddScoped<ZoundDataInit>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IArtistRepository, ArtistRepository>();
+            services.AddScoped<IMusicRoomRepository, MusicRoomRepository>();
+            services.AddScoped<ISongRepository, SongRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ZoundDataInit dataInit)
         {
             if (env.IsDevelopment())
             {
@@ -60,6 +78,7 @@ namespace ZoundAPI
             {
                 endpoints.MapControllers();
             });
+            dataInit.InitAsync();
         }
     }
 }

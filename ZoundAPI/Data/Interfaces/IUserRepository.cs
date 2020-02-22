@@ -10,7 +10,7 @@ namespace ZoundAPI.Data.Interfaces
     {
         User GetById(int id);
         void SaveChanges();
-        User GetByMail(string mail);
+        User GetByMail(string email);
         void Add(User user);
     }
 }

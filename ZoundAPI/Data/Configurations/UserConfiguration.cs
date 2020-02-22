@@ -8,9 +8,6 @@ namespace ZoundAPI.Data.Configurations
     {
         public void Configure(EntityTypeBuilder<User> builder)
         {
-            builder.ToTable("Users");
-            //Primary Key
-            builder.HasKey(b => b.UserId);
             //Properties
             builder.Property(b => b.Firstname)
                 .HasColumnName("Firstname")
