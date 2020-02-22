@@ -17,10 +17,6 @@ namespace ZoundAPI.Data.Configurations
                 .HasColumnName("Lastname")
                 .HasMaxLength(50);
 
-            builder.Property(b => b.Username)
-                .HasColumnName("Username")
-                .IsRequired()
-                .HasMaxLength(30);
             builder.HasMany(b => b.Friends);
                 
         }

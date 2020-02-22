@@ -19,6 +19,28 @@ namespace ZoundAPI.Data
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
+            /*
+            builder.Entity<User>()
+                        .HasMany<User>(s => s.Friends)
+                        .WithMany<User>(s => s.Friends)
+                        .Map(cs =>
+                        {
+                            cs.MapLeftKey("UserId");
+                            cs.MapRightKey("FriendId");
+                            cs.ToTable("UserFriends");
+                        });
+
+            builder.Entity<MusicRoom>()
+                        .HasMany<User>(s => s.Members)
+                        .WithMany(c => c.Rooms)
+                        .Map(cs =>
+                        {
+                            cs.MapLeftKey("UserId");
+                            cs.MapRightKey("FriendId");
+                            cs.ToTable("UserFriends");
+                        });
+            */
+            builder.ApplyConfiguration(new UserFriendConfiguration());
             builder.ApplyConfiguration(new SongConfiguration());
             builder.ApplyConfiguration(new MusicRoomConfiguration());
             builder.ApplyConfiguration(new UserConfiguration());

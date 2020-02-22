@@ -11,7 +11,6 @@ namespace ZoundAPI.Models.Domain
         public int UserId { get; set; }
         public string Firstname { get; set; }
         public string Lastname { get; set; }
-        public string Username { get; set; }
         public ICollection<User> Friends { get; set; }
 
         public User()
@@ -25,9 +24,13 @@ namespace ZoundAPI.Models.Domain
             this.Email = dto.Email;
             this.Firstname = dto.FirstName;
             this.Lastname = dto.LastName;
-            this.Username = Username;
         }
 
         
+    }
+    public class UserFriend
+    {
+        public int UserId { get; set; }
+        public int FriendId { get; set; }
     }
 }
