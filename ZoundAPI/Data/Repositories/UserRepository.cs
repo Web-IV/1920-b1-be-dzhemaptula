@@ -21,9 +21,9 @@ namespace ZoundAPI.Data.Repositories
             this.context.Users.Add(user);
         }
 
-        public User GetById(int id)
+        public User GetById(string id)
         {
-            return context.Users.FirstOrDefault(b => b.UserId.Equals(id));
+            return context.Users.FirstOrDefault(b => b.Id.Equals(id));
         }
 
         public User GetByMail(string email)

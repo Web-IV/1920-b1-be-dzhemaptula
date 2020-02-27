@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29418.71
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZoundAPI", "ZoundAPI\ZoundAPI.csproj", "{07AA9644-09AB-4E0D-A315-0284C761B0BE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZoundAPI", "ZoundAPI\ZoundAPI.csproj", "{07AA9644-09AB-4E0D-A315-0284C761B0BE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zound_TESTS", "Zound_TESTS\Zound_TESTS.csproj", "{4ADA69C0-58E4-4507-A5FB-14538092E3C6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{07AA9644-09AB-4E0D-A315-0284C761B0BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{07AA9644-09AB-4E0D-A315-0284C761B0BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{07AA9644-09AB-4E0D-A315-0284C761B0BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4ADA69C0-58E4-4507-A5FB-14538092E3C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4ADA69C0-58E4-4507-A5FB-14538092E3C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4ADA69C0-58E4-4507-A5FB-14538092E3C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4ADA69C0-58E4-4507-A5FB-14538092E3C6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

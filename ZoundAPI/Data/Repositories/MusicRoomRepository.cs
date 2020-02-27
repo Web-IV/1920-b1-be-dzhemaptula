@@ -26,14 +26,11 @@ namespace ZoundAPI.Data.Repositories
             return context.MusicRooms.FirstOrDefault(b => b.RoomId.Equals(id));
         }
 
-        public ICollection<User> GetMembersByRoomId(int id)
-        {
-            return context.MusicRooms.FirstOrDefault(b => b.RoomId.Equals(id)).Members;
-        }
+        public ICollection<User> GetMembersByRoomId(int id) => context.MusicRooms.FirstOrDefault(b => b.RoomId.Equals(id))?.Members;
 
         public ICollection<Song> GetQueuedSongsByRoomId(int id)
         {
-            return context.MusicRooms.FirstOrDefault(b => b.RoomId.Equals(id)).QueuedSongs;
+            return context.MusicRooms.FirstOrDefault(b => b.RoomId.Equals(id))?.QueuedSongs;
         }
 
         public void SaveChanges()

@@ -40,11 +40,11 @@ namespace ZoundAPI.Data
                             cs.ToTable("UserFriends");
                         });
             */
-            builder.ApplyConfiguration(new UserFriendConfiguration());
             builder.ApplyConfiguration(new SongConfiguration());
             builder.ApplyConfiguration(new MusicRoomConfiguration());
             builder.ApplyConfiguration(new UserConfiguration());
             builder.ApplyConfiguration(new ArtistConfiguration());
+            builder.ApplyConfiguration(new UserFriendConfiguration());
         }
 
     }

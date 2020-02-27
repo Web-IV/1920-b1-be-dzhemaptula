@@ -23,12 +23,12 @@ namespace ZoundAPI.Data.Repositories
 
         public Song GetById(int id)
         {
-            return context.Songs.Where(b => b.SongId.Equals(id)).FirstOrDefault();
+            return context.Songs.FirstOrDefault(b => b.SongId.Equals(id));
         }
 
         public Song GetByName(string name)
         {
-            return context.Songs.Where(b => b.Name.Equals(name)).FirstOrDefault();
+            return context.Songs.FirstOrDefault(b => b.Name.Equals(name));
         }
 
         public void SaveChanges()
