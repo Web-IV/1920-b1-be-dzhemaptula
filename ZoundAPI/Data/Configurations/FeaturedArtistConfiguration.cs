@@ -8,23 +8,25 @@ using ZoundAPI.Models.Domain;
 
 namespace ZoundAPI.Data.Configurations
 {
-    public class ArtistSongConfiguration : IEntityTypeConfiguration<ArtistSong>
+    public class FeaturedArtistConfiguration : IEntityTypeConfiguration<FeaturedArtist>
     {
 
-        public void Configure(EntityTypeBuilder<ArtistSong> builder)
+        public void Configure(EntityTypeBuilder<FeaturedArtist> builder)
         {
-            builder.ToTable("UserFriends");
+            builder.ToTable("FeaturedArtists");
 
             builder.HasKey(f => new { f.ArtistId, f.SongId });
 
-            builder.HasOne(pt => pt.Song)
+            builder.HasOne(pt => pt.Artist)
                 .WithMany()
-                .HasForeignKey(pt => pt.SongId)
+                .HasForeignKey(pt => pt.ArtistId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            builder.HasOne(pt => pt.Artist)
-                .WithMany(p => p.Songs)
-                .HasForeignKey(pt => pt.UserId);
+            builder.HasOne(pt => pt.Song)
+                .WithMany(p => p.FeaturedArtists)
+                .HasForeignKey(pt => pt.SongId);
+
+
 
 
         }

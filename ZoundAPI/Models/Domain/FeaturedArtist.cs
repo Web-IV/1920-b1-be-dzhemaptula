@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ZoundAPI.Models.Domain
 {
-    public class ArtistSong
+    public class FeaturedArtist
     {
         [ForeignKey(nameof(ArtistId))] 
         public Artist Artist { get; set; }

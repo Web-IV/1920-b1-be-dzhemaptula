@@ -45,6 +45,8 @@ namespace ZoundAPI.Data
             builder.ApplyConfiguration(new UserConfiguration());
             builder.ApplyConfiguration(new ArtistConfiguration());
             builder.ApplyConfiguration(new UserFriendConfiguration());
+            builder.ApplyConfiguration(new FeaturedArtistConfiguration());
+            builder.ApplyConfiguration(new FavoriteRoomConfiguration());
         }
 
     }

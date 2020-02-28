@@ -17,6 +17,8 @@ namespace ZoundAPI.Data.Configurations
 
             builder.Property(b => b.METADATA)
                 .IsRequired();
+
+            builder.HasOne(b => b.Artist);
         }
     }
 }
