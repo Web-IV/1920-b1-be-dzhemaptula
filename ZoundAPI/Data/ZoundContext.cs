@@ -11,6 +11,7 @@ namespace ZoundAPI.Data
         public DbSet<MusicRoom> MusicRooms { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Artist> Artists { get; set; }
+        public DbSet<UserFriend> UserFriends { get; set; }
 
         public ZoundContext(DbContextOptions<ZoundContext> options)
             : base(options)

@@ -25,5 +25,14 @@ namespace ZoundAPI.Models.Domain
         }
 
 
+        public void AddFriend(User friend)
+        {
+            AddFriend(new UserFriend(this, friend));
+        }
+
+        public void AddFriend(UserFriend userFriend)
+        {
+            Friends.Add(userFriend);
+        }
     }
 }

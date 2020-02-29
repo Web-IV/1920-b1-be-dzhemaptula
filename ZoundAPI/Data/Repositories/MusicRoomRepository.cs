@@ -9,33 +9,33 @@ namespace ZoundAPI.Data.Repositories
 {
     public class MusicRoomRepository : IMusicRoomRepository
     {
-        private readonly ZoundContext context;
+        private readonly ZoundContext _context;
 
         public MusicRoomRepository(ZoundContext context)
         {
-            this.context = context;
+            this._context = context;
         }
 
         public void Add(MusicRoom room)
         {
-            this.context.MusicRooms.Add(room);
+            this._context.MusicRooms.Add(room);
         }
 
         public MusicRoom GetById(int id)
         {
-            return context.MusicRooms.FirstOrDefault(b => b.RoomId.Equals(id));
+            return _context.MusicRooms.FirstOrDefault(b => b.RoomId.Equals(id));
         }
 
-        public ICollection<User> GetMembersByRoomId(int id) => context.MusicRooms.FirstOrDefault(b => b.RoomId.Equals(id))?.Members;
+        public ICollection<User> GetMembersByRoomId(int id) => _context.MusicRooms.FirstOrDefault(b => b.RoomId.Equals(id))?.Members;
 
         public ICollection<Song> GetQueuedSongsByRoomId(int id)
         {
-            return context.MusicRooms.FirstOrDefault(b => b.RoomId.Equals(id))?.QueuedSongs;
+            return _context.MusicRooms.FirstOrDefault(b => b.RoomId.Equals(id))?.QueuedSongs;
         }
 
         public void SaveChanges()
         {
-            this.context.SaveChanges();
+            this._context.SaveChanges();
         }
     }
 }

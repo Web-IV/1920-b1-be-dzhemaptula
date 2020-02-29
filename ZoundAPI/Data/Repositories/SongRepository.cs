@@ -9,31 +9,31 @@ namespace ZoundAPI.Data.Repositories
 {
     public class SongRepository : ISongRepository
     {
-        private readonly ZoundContext context;
+        private readonly ZoundContext _context;
 
         public SongRepository(ZoundContext context)
         {
-            this.context = context;
+            this._context = context;
         }
 
         public void Add(Song song)
         {
-            this.context.Songs.Add(song);
+            this._context.Songs.Add(song);
         }
 
         public Song GetById(int id)
         {
-            return context.Songs.FirstOrDefault(b => b.SongId.Equals(id));
+            return _context.Songs.FirstOrDefault(b => b.SongId.Equals(id));
         }
 
         public Song GetByName(string name)
         {
-            return context.Songs.FirstOrDefault(b => b.Name.Equals(name));
+            return _context.Songs.FirstOrDefault(b => b.Name.Equals(name));
         }
 
         public void SaveChanges()
         {
-            this.context.SaveChanges();
+            this._context.SaveChanges();
         }
     }
 }
