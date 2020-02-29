@@ -32,7 +32,7 @@ namespace ZoundAPI
             {
                 o.Password.RequireDigit = false;
                 o.Password.RequireUppercase = false;
-                o.Password.RequiredLength = 2;
+                o.Password.RequiredLength = 6;
                 o.Password.RequireLowercase = false;
                 o.Password.RequireNonAlphanumeric = false;
 
@@ -45,9 +45,6 @@ namespace ZoundAPI
                 options.AddPolicy("AdminOnly", policy => policy.RequireClaim(ClaimTypes.Role, "admin"));
                 options.AddPolicy("Customer", policy => policy.RequireClaim(ClaimTypes.Role, "customer"));
             });
-            services.AddControllersWithViews()
-                .AddRazorRuntimeCompilation();
-            services.AddRazorPages();
             services.AddSession();
             services.AddScoped<ZoundDataInit>();
             services.AddScoped<IUserRepository, UserRepository>();
