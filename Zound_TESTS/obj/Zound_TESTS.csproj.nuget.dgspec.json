@@ -1,21 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\dzhem\\OneDrive\\Documents\\HoGent\\2019-20\\Web IV\\1920-b1-be-dzhemaptula\\Zound_TESTS\\Zound_TESTS.csproj": {}
+    "C:\\Applications\\Web4\\1920-b1-be-dzhemaptula\\Zound_TESTS\\Zound_TESTS.csproj": {}
   },
   "projects": {
-    "C:\\Users\\dzhem\\OneDrive\\Documents\\HoGent\\2019-20\\Web IV\\1920-b1-be-dzhemaptula\\ZoundAPI\\ZoundAPI.csproj": {
+    "C:\\Applications\\Web4\\1920-b1-be-dzhemaptula\\ZoundAPI\\ZoundAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\dzhem\\OneDrive\\Documents\\HoGent\\2019-20\\Web IV\\1920-b1-be-dzhemaptula\\ZoundAPI\\ZoundAPI.csproj",
+        "projectUniqueName": "C:\\Applications\\Web4\\1920-b1-be-dzhemaptula\\ZoundAPI\\ZoundAPI.csproj",
         "projectName": "ZoundAPI",
-        "projectPath": "C:\\Users\\dzhem\\OneDrive\\Documents\\HoGent\\2019-20\\Web IV\\1920-b1-be-dzhemaptula\\ZoundAPI\\ZoundAPI.csproj",
+        "projectPath": "C:\\Applications\\Web4\\1920-b1-be-dzhemaptula\\ZoundAPI\\ZoundAPI.csproj",
         "packagesPath": "C:\\Users\\dzhem\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\dzhem\\OneDrive\\Documents\\HoGent\\2019-20\\Web IV\\1920-b1-be-dzhemaptula\\ZoundAPI\\obj\\",
+        "outputPath": "C:\\Applications\\Web4\\1920-b1-be-dzhemaptula\\ZoundAPI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
           "C:\\Users\\dzhem\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -96,22 +95,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\dzhem\\OneDrive\\Documents\\HoGent\\2019-20\\Web IV\\1920-b1-be-dzhemaptula\\Zound_TESTS\\Zound_TESTS.csproj": {
+    "C:\\Applications\\Web4\\1920-b1-be-dzhemaptula\\Zound_TESTS\\Zound_TESTS.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\dzhem\\OneDrive\\Documents\\HoGent\\2019-20\\Web IV\\1920-b1-be-dzhemaptula\\Zound_TESTS\\Zound_TESTS.csproj",
+        "projectUniqueName": "C:\\Applications\\Web4\\1920-b1-be-dzhemaptula\\Zound_TESTS\\Zound_TESTS.csproj",
         "projectName": "Zound_TESTS",
-        "projectPath": "C:\\Users\\dzhem\\OneDrive\\Documents\\HoGent\\2019-20\\Web IV\\1920-b1-be-dzhemaptula\\Zound_TESTS\\Zound_TESTS.csproj",
+        "projectPath": "C:\\Applications\\Web4\\1920-b1-be-dzhemaptula\\Zound_TESTS\\Zound_TESTS.csproj",
         "packagesPath": "C:\\Users\\dzhem\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\dzhem\\OneDrive\\Documents\\HoGent\\2019-20\\Web IV\\1920-b1-be-dzhemaptula\\Zound_TESTS\\obj\\",
+        "outputPath": "C:\\Applications\\Web4\\1920-b1-be-dzhemaptula\\Zound_TESTS\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
           "C:\\Users\\dzhem\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -128,8 +126,8 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "C:\\Users\\dzhem\\OneDrive\\Documents\\HoGent\\2019-20\\Web IV\\1920-b1-be-dzhemaptula\\ZoundAPI\\ZoundAPI.csproj": {
-                "projectPath": "C:\\Users\\dzhem\\OneDrive\\Documents\\HoGent\\2019-20\\Web IV\\1920-b1-be-dzhemaptula\\ZoundAPI\\ZoundAPI.csproj"
+              "C:\\Applications\\Web4\\1920-b1-be-dzhemaptula\\ZoundAPI\\ZoundAPI.csproj": {
+                "projectPath": "C:\\Applications\\Web4\\1920-b1-be-dzhemaptula\\ZoundAPI\\ZoundAPI.csproj"
               }
             }
           }
@@ -178,7 +176,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
         }
       }
     }
