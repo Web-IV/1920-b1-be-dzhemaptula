@@ -40,6 +40,19 @@ namespace ZoundAPI.Controllers
             return NotFound();
         }
 
+        [HttpGet("{id}", Name = "GetUserById")]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public ActionResult Get(int id)
+        {
+            var User = UserService.GetById(id);
+            //return $"{User.Firstname} {User.Lastname}";
+            var result = UserService.GetById(id);
+            if (result != null)
+                return new OkObjectResult(result);
+            return NotFound();
+        }
+
         // POST: api/User
         [HttpPost]
         public void Post([FromBody] string value)

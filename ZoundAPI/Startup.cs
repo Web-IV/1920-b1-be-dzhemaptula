@@ -47,8 +47,7 @@ namespace ZoundAPI
                 o.Password.RequiredLength = 6;
                 o.Password.RequireLowercase = false;
                 o.Password.RequireNonAlphanumeric = false;
-
-                //o.User.RequireUniqueEmail = true;
+                o.User.RequireUniqueEmail = true;
             }).AddEntityFrameworkStores<ZoundContext>();
 
 
