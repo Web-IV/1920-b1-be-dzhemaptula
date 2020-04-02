@@ -9,6 +9,8 @@ namespace ZoundAPI.Data.Configurations
         public void Configure(EntityTypeBuilder<User> builder)
         {
             //Properties
+            builder.HasKey(b => b.UserId);
+
             builder.Property(b => b.Firstname)
                 .HasColumnName("Firstname")
                 .HasMaxLength(50);

@@ -2,15 +2,49 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using ZoundAPI.Data.Interfaces;
 
 namespace ZoundAPI.Controllers
 {
-    public class UserController : Controller
+    [Route("api/[controller]")]
+    [ApiController]
+    public class UserController : ControllerBase
     {
-        public IActionResult Index()
+        private readonly IUserService UserService;
+        //private readonly SignInManager<IdentityUser> signInManager;
+        public UserController(IUserService userService/*, SignInManager<IdentityUser> signIn*/)
         {
-            return View();
+            this.UserService = userService;
+            //signInManager = signIn;
+        }
+
+        // GET: api/User/5
+        [HttpGet("{id}", Name = "GetUserById")]
+        public string Get(int id)
+        {
+            var User = UserService.GetById(id);
+            return $"{User.Firstname} {User.Lastname}";
+        }
+
+        // POST: api/User
+        [HttpPost]
+        public void Post([FromBody] string value)
+        {
+        }
+
+        // PUT: api/User/5
+        [HttpPut("{id}")]
+        public void Put(int id, [FromBody] string value)
+        {
+        }
+
+        // DELETE: api/ApiWithActions/5
+        [HttpDelete("{id}")]
+        public void Delete(int id)
+        {
         }
     }
 }

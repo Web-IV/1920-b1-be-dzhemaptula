@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace ZoundAPI.Models.Domain
 {
@@ -12,8 +13,7 @@ namespace ZoundAPI.Models.Domain
 
         public Song()
         {
+            FeaturedArtists = new HashSet<FeaturedArtist>();
         }
-        
-       
     }
 }

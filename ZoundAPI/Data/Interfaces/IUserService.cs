@@ -8,7 +8,7 @@ namespace ZoundAPI.Data.Interfaces
 {
     public interface IUserService
     {
-        User GetById(string id);
+        User GetById(int id);
         void SaveChanges();
         User GetByMail(string email);
         void Add(User user);

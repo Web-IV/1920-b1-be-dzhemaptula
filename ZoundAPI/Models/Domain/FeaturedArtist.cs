@@ -11,5 +11,17 @@ namespace ZoundAPI.Models.Domain
         [ForeignKey(nameof(SongId))]
         public Song Song { get; set; }
         public int SongId { get; set; }
+
+        public FeaturedArtist(Artist artist, Song song)
+        {
+            Artist = artist;
+            Song = song;
+            ArtistId = artist.ArtistId;
+            SongId = song.SongId;
+        }
+
+        public FeaturedArtist()
+        {
+        }
     }
 }

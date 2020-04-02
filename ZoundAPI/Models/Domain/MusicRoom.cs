@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace ZoundAPI.Models.Domain
 {
@@ -9,21 +10,26 @@ namespace ZoundAPI.Models.Domain
         public string Genre { get; private set; }
         public string Description { get; set; }
         public ICollection<User> Members { get; set; }
-        public ICollection<Song> QueuedSongs { get; set; }
+        public Queue<Song> QueuedSongs { get; set; }
 
         public MusicRoom()
         {
             Members = new HashSet<User>();
-            QueuedSongs = new HashSet<Song>();
+            QueuedSongs = new Queue<Song>();
         }
 
-        public MusicRoom(MusicRoomDTO dto)
+        public MusicRoom(MusicRoomDTO dto):this()
         {
             Name = dto.Name;
             Genre = dto.Genre;
             Description = dto.Description;
-            Members = new HashSet<User>();
-            QueuedSongs = new HashSet<Song>();
         }
+
+        public MusicRoom(string name):this()
+        {
+            Name = name;
+        }
+
+        
     }
 }
