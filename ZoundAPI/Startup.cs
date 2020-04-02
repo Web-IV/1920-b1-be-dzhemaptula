@@ -28,17 +28,20 @@ namespace ZoundAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson(options =>
+                    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+                );
             services.AddSwaggerGen(x =>
             {
-                x.SwaggerDoc("v1", new OpenApiInfo{Title = "Zound API", Version = "v1"});
+                x.SwaggerDoc("v1", new OpenApiInfo { Title = "Zound API", Version = "v1" });
             });
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IArtistService, ArtistService>();
             services.AddScoped<IMusicRoomService, MusicRoomService>();
             services.AddScoped<ISongService, SongService>();
             services.AddScoped<ZoundDataInit>();
-            services.AddIdentity<IdentityUser, IdentityRole>(o => {
+            services.AddIdentity<IdentityUser, IdentityRole>(o =>
+            {
                 o.Password.RequireDigit = false;
                 o.Password.RequireUppercase = false;
                 o.Password.RequiredLength = 6;
@@ -49,9 +52,10 @@ namespace ZoundAPI
             }).AddEntityFrameworkStores<ZoundContext>();
 
 
+
             services.AddDbContext<ZoundContext>(options =>
                 options.UseSqlServer(
-                    Environment.GetEnvironmentVariable("ConnectionStringVariable")
+                    Environment.GetEnvironmentVariable("AzureConnectionString")
                 ));
         }
 

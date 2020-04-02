@@ -27,7 +27,13 @@ namespace ZoundAPI.Data.Repositories
 
         public User GetById(int id)
         {
+
             return _users.FirstOrDefault(b => b.UserId.Equals(id));
+        }
+
+        public User GetFriendsByUserId(int id)
+        {
+            return _users.Include(x => x.Friends).ToList().FirstOrDefault(b => b.UserId.Equals(id));
         }
 
         public User GetByMail(string email)

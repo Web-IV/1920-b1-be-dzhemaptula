@@ -22,11 +22,22 @@ namespace ZoundAPI.Controllers
         }
 
         // GET: api/User/5
+        /// <summary>
+        /// Gets a user by id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>200OK if User found by id along with User. 404 if no user found by id.</returns>
         [HttpGet("{id}", Name = "GetUserById")]
-        public string Get(int id)
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public ActionResult Get(int id)
         {
             var User = UserService.GetById(id);
-            return $"{User.Firstname} {User.Lastname}";
+            //return $"{User.Firstname} {User.Lastname}";
+            var result = UserService.GetById(id);
+            if (result != null)
+                return new OkObjectResult(result);
+            return NotFound();
         }
 
         // POST: api/User
