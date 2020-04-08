@@ -24,6 +24,15 @@ namespace ZoundAPI.Data.Repositories
         {
             _users.Add(user);
         }
+        public async Task<User> GetByUserNameAsync(string userName)
+        {
+            return await _users.FirstOrDefaultAsync(x => x.UserName.Equals(userName));
+        }
+
+        public ICollection<User> GetAll()
+        {
+            return this._users.ToList();
+        }
 
         public User GetById(int id)
         {
@@ -50,5 +59,7 @@ namespace ZoundAPI.Data.Repositories
         {
             this._users.Update(user);
         }
+
+        
     }
 }

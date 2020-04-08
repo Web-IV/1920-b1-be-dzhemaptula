@@ -131,5 +131,14 @@ C:\Applications\Web4\1920-b1-be-dzhemaptula\ZoundAPI\bin\Debug\netcoreapp3.1\run
 C:\Applications\Web4\1920-b1-be-dzhemaptula\ZoundAPI\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.JsonPatch.dll
 C:\Applications\Web4\1920-b1-be-dzhemaptula\ZoundAPI\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 C:\Applications\Web4\1920-b1-be-dzhemaptula\ZoundAPI\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll
+C:\Applications\Web4\1920-b1-be-dzhemaptula\ZoundAPI\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Applications\Web4\1920-b1-be-dzhemaptula\ZoundAPI\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Applications\Web4\1920-b1-be-dzhemaptula\ZoundAPI\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Logging.dll
+C:\Applications\Web4\1920-b1-be-dzhemaptula\ZoundAPI\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.dll
+C:\Applications\Web4\1920-b1-be-dzhemaptula\ZoundAPI\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Applications\Web4\1920-b1-be-dzhemaptula\ZoundAPI\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Tokens.dll
+C:\Applications\Web4\1920-b1-be-dzhemaptula\ZoundAPI\bin\Debug\netcoreapp3.1\System.IdentityModel.Tokens.Jwt.dll
 C:\Applications\Web4\1920-b1-be-dzhemaptula\ZoundAPI\obj\Debug\netcoreapp3.1\ZoundAPI.MvcApplicationPartsAssemblyInfo.cs
 C:\Applications\Web4\1920-b1-be-dzhemaptula\ZoundAPI\obj\Debug\netcoreapp3.1\ZoundAPI.MvcApplicationPartsAssemblyInfo.cache
+C:\Applications\Web4\1920-b1-be-dzhemaptula\ZoundAPI\bin\Debug\netcoreapp3.1\System.Net.Http.Formatting.dll
+C:\Applications\Web4\1920-b1-be-dzhemaptula\ZoundAPI\bin\Debug\netcoreapp3.1\System.Web.Http.dll

@@ -21,11 +21,6 @@ namespace ZoundAPI.Models.Domain
             FavoriteRooms = new HashSet<FavoriteRoom>();
         }
 
-        public User(RegisterDTO dto) : this()
-        {
-            this.Firstname = dto.FirstName;
-            this.Lastname = dto.LastName;
-        }
 
         public User(string fName, string lName) : this()
         {
