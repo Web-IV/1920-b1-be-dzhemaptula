@@ -117,6 +117,7 @@ namespace ZoundAPI
 
             app.UseRouting();
 
+
             app.UseAuthentication();
             app.UseAuthorization();
 
@@ -125,7 +126,7 @@ namespace ZoundAPI
                 endpoints.MapControllers();
             });
 
-            datainit.InitAsync();
+            datainit.InitAsync().Wait();
         }
     }
 }
