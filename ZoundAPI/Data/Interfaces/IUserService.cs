@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using ZoundAPI.DTOs;
 using ZoundAPI.Models.Domain;
 
 namespace ZoundAPI.Data.Interfaces
@@ -10,7 +11,7 @@ namespace ZoundAPI.Data.Interfaces
         User GetById(int id);
         ICollection<User> GetAll();
         ICollection<UserFriendRequest> GetFriendRequestsById(int id);
-        ICollection<UserFriend> GetFriendsByUserId(int id);
+        ICollection<UserDto> GetFriendsByUserId(int id);
         Task<User> GetByUserNameAsync(string userName); 
         User GetByUserName(string userName);
         UserFriend AcceptFriendRequest(Guid token);

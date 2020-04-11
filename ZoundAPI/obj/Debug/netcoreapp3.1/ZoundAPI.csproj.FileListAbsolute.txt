@@ -146,8 +146,6 @@ C:\Applications\Web4\1920-b1-be-dzhemaptula\ZoundAPI\bin\Debug\netcoreapp3.1\Mic
 C:\Applications\Web4\1920-b1-be-dzhemaptula\ZoundAPI\bin\Debug\netcoreapp3.1\Nancy.dll
 C:\Applications\Web4\1920-b1-be-dzhemaptula\ZoundAPI\obj\Debug\netcoreapp3.1\ZoundAPI.MvcApplicationPartsAssemblyInfo.cs
 C:\Applications\Web4\1920-b1-be-dzhemaptula\ZoundAPI\obj\Debug\netcoreapp3.1\ZoundAPI.MvcApplicationPartsAssemblyInfo.cache
-C:\Applications\Web4\1920-b1-be-dzhemaptula\ZoundAPI\bin\Debug\netcoreapp3.1\System.Net.Http.Formatting.dll
-C:\Applications\Web4\1920-b1-be-dzhemaptula\ZoundAPI\bin\Debug\netcoreapp3.1\System.Web.Http.dll
 C:\Users\dzhem\OneDrive\Bureaublad\1920-b1-be-dzhemaptula\ZoundAPI\bin\Debug\netcoreapp3.1\appsettings.Development.json
 C:\Users\dzhem\OneDrive\Bureaublad\1920-b1-be-dzhemaptula\ZoundAPI\bin\Debug\netcoreapp3.1\appsettings.json
 C:\Users\dzhem\OneDrive\Bureaublad\1920-b1-be-dzhemaptula\ZoundAPI\bin\Debug\netcoreapp3.1\Properties\launchSettings.json

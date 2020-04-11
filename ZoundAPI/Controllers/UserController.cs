@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ZoundAPI.Data.Interfaces;
+using ZoundAPI.DTOs;
 using ZoundAPI.Models.Domain;
 
 namespace ZoundAPI.Controllers

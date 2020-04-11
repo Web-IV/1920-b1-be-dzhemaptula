@@ -8,6 +8,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Primitives;
 using Nancy;
 using ZoundAPI.Data.Interfaces;
+using ZoundAPI.DTOs;
 using ZoundAPI.Models.Domain;
 
 namespace ZoundAPI.Data.Repositories
@@ -52,14 +53,33 @@ namespace ZoundAPI.Data.Repositories
             return _users.FirstOrDefault(b => b.UserId.Equals(id));
         }
 
-        public ICollection<UserFriend> GetFriendsByUserId(int id)
+        public ICollection<UserDto> GetFriendsByUserId(int id)
         {
             //return _users.Include(x => x.Friends).ToList().FirstOrDefault(b => b.UserId.Equals(id));
-            return _users.Include(x => x.Friends)
+            var ids = _users.Include(x => x.Friends)
                        .FirstOrDefault(x => x.UserId.Equals(id))
-                       ?.Friends
+                       ?.Friends.Select(x => x.FriendId).ToList()
                    ?? throw new ArgumentException("Something went wrong at requests.");
+            ICollection<UserDto> result = new HashSet<UserDto>();
+            // return _users.Where(us => ids.Contains(us.UserId)).GroupBy(x => new
+            // {
+            //     x.UserId, x.Email, x.UserName, x.Firstname, x.Lastname
+            // }).ToList();
 
+            _users.Where(u => ids.Contains(u.UserId)).ToList().ForEach(x =>
+            {
+                result.Add(new UserDto(x.UserId, x.Email, x.UserName, x.Firstname, x.Lastname));
+            });
+            /*new UserDto(
+                {
+                    UserId = x.UserId,
+                    Email = x.Email,
+                    FirstName = x.Firstname,
+                    LastName = x.Lastname, 
+                    UserName = x.UserName
+                    */
+
+            return result;
         }
 
         public User GetByMail(string email)
@@ -109,7 +129,7 @@ namespace ZoundAPI.Data.Repositories
         {
             return _users.Include(x => x.FriendRequests)
                 .FirstOrDefault(x => x.UserId.Equals(id))
-                ?.FriendRequests 
+                ?.FriendRequests
                    ?? throw new ArgumentException("Something went wrong at requests.");
         }
     }
