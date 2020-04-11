@@ -16,11 +16,6 @@ namespace ZoundAPI.Data.Repositories
             this._context = context;
         }
 
-        public void Add(Song song)
-        {
-            this._context.Songs.Add(song);
-        }
-
         public Song GetById(int id)
         {
             return _context.Songs.FirstOrDefault(b => b.SongId.Equals(id));
@@ -31,9 +26,5 @@ namespace ZoundAPI.Data.Repositories
             return _context.Songs.FirstOrDefault(b => b.Name.Equals(name));
         }
 
-        public void SaveChanges()
-        {
-            this._context.SaveChanges();
-        }
     }
 }

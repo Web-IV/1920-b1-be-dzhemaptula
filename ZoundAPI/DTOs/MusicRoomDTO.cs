@@ -1,6 +1,6 @@
-﻿namespace ZoundAPI.Models.Domain
+﻿namespace ZoundAPI.DTOs
 {
-    public class MusicRoomDTO
+    public class MusicRoomDto
     {
         public string Name { get; internal set; }
         public string Genre { get; internal set; }

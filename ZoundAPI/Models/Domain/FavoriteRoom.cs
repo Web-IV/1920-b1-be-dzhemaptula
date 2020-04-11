@@ -1,11 +1,11 @@
 ﻿namespace ZoundAPI.Models.Domain
 {
-    public class FavoriteRoom
+    public sealed class FavoriteRoom
     {
-        public virtual int UserId { get; set; }
-        public virtual User User { get; set; }
-        public virtual int RoomId { get; set; }
-        public virtual MusicRoom Room { get; set; }
+        public int UserId { get; set; }
+        public User User { get; set; }
+        public int RoomId { get; set; }
+        public MusicRoom Room { get; set; }
 
         public FavoriteRoom(User user, MusicRoom musicroom)
         {

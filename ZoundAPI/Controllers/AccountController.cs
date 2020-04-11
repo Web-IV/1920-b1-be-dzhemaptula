@@ -1,20 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
-using System.Net.WebSockets;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
-using ZoundAPI.Data.Interfaces;
+using Nancy.Json;
+using ZoundAPI.DTOs;
 using ZoundAPI.Models;
-using ZoundAPI.Models.Domain;
-using ZoundAPI.Models.ViewModels;
 
 namespace ZoundAPI.Controllers
 {
@@ -22,26 +18,29 @@ namespace ZoundAPI.Controllers
     [ApiController]
     public class AccountController : ControllerBase
     {
-        private readonly UserManager<IdentityUser> UserManager;
-        private readonly SignInManager<IdentityUser> SignInManger;
-        public AccountController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)
+        private readonly UserManager<IdentityUser> _userManager;
+        private readonly ILogger<AccountController> _logger;
+
+        public AccountController(UserManager<IdentityUser> userManager, ILogger<AccountController> _logger)
         {
-            UserManager = userManager;
-            SignInManger = signInManager;
+            this._userManager = userManager;
+            this._logger = _logger;
         }
 
         [AllowAnonymous]
         [HttpPost]
         [Route("Register")]
         //POST : /api/Account/Register
-        public async Task<IActionResult> Register(RegisterDTO model)
+        public async Task<IActionResult> Register(RegisterDto model)
         {
-            var user = new IdentityUser { UserName = model.UserName, Email = model.Email };
-            var result = await UserManager.CreateAsync(user, model.PasswordConfirmation);
-            if (result.Succeeded)
+            if (model.Password == model.PasswordConfirmation)
             {
-                await SignInManger.SignInAsync(user, isPersistent: true);
-                return Ok();
+                var user = new IdentityUser { UserName = model.UserName, Email = model.Email };
+                var result = await _userManager.CreateAsync(user, model.Password);
+                if (result.Succeeded)
+                {
+                    return Ok();
+                }
             }
             return BadRequest(model);
         }
@@ -50,10 +49,13 @@ namespace ZoundAPI.Controllers
         [HttpPost]
         [Route("Login")]
         //POST : /api/Account/Login
-        public async Task<IActionResult> Login(LoginDTO model)
+        public async Task<IActionResult> Login(LoginDto model)
         {
-            var user = await UserManager.FindByNameAsync(model.UserName);
-            if (user != null && await UserManager.CheckPasswordAsync(user, model.Password))
+            var json = new JavaScriptSerializer().Serialize(model);
+            _logger.LogInformation($"Call to /api/account/login with body {json}");
+
+            var user = await _userManager.FindByNameAsync(model.UserName);
+            if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
             {
                 var tokenDescriptor = new SecurityTokenDescriptor
                 {

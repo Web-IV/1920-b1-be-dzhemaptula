@@ -10,7 +10,5 @@ namespace ZoundAPI.Data.Interfaces
     {
         Song GetById(int id);
         Song GetByName(string name);
-        void SaveChanges();
-        void Add(Song song);
     }
 }

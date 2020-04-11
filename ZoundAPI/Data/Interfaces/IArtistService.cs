@@ -10,7 +10,5 @@ namespace ZoundAPI.Data.Interfaces
     {
         Artist GetById(int id);
         Artist GetByName(string name);
-        void SaveChanges();
-        void Add(Artist artist);
     }
 }

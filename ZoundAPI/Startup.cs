@@ -57,18 +57,19 @@ namespace ZoundAPI
             {
                 // Cookie settings
                 options.Cookie.HttpOnly = true;
-                options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
+                options.ExpireTimeSpan = TimeSpan.FromDays(30);
 
                 options.LoginPath = "/api/Account/Login";
                 options.AccessDeniedPath = "/api/Account/AccessDenied";
                 options.SlidingExpiration = true;
             });
 
+            //You can add the launchsettings to gitignore to hide keys, won't do it otherwise app doesn't work and can't be cloned.
             services.AddDbContext<ZoundContext>(options =>
                 options.UseSqlServer(
-                    Environment.GetEnvironmentVariable("ConnectionStringVariable")
+                    Environment.GetEnvironmentVariable("ConnectionStringVariable") ?? throw new ArgumentNullException(nameof(services))
                 ));
-            var key = Encoding.UTF8.GetBytes(Environment.GetEnvironmentVariable("SignInKey"));
+            var key = Encoding.UTF8.GetBytes(Environment.GetEnvironmentVariable("SignInKey") ?? throw new ArgumentNullException(nameof(services)));
 
             services.AddAuthentication(x =>
             {
@@ -110,7 +111,7 @@ namespace ZoundAPI
             app.UseHttpsRedirection();
             var webSocketOptions = new WebSocketOptions()
             {
-                KeepAliveInterval = TimeSpan.FromSeconds(120),
+                KeepAliveInterval = TimeSpan.FromDays(1),
                 ReceiveBufferSize = 4 * 1024
             };
             app.UseWebSockets(webSocketOptions);
@@ -127,6 +128,8 @@ namespace ZoundAPI
             });
 
             datainit.InitAsync().Wait();
+
+
         }
     }
 }

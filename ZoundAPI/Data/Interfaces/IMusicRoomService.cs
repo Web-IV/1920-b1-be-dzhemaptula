@@ -11,7 +11,5 @@ namespace ZoundAPI.Data.Interfaces
         MusicRoom GetById(int id);
         ICollection<User> GetMembersByRoomId(int id);
         Queue<Song> GetQueuedSongsByRoomId(int id);
-        void SaveChanges();
-        void Add(MusicRoom room);
     }
 }

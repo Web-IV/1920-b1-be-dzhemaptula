@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
+using ZoundAPI.DTOs;
 
 namespace ZoundAPI.Models.Domain
 {
@@ -18,7 +18,7 @@ namespace ZoundAPI.Models.Domain
             QueuedSongs = new Queue<Song>();
         }
 
-        public MusicRoom(MusicRoomDTO dto):this()
+        public MusicRoom(MusicRoomDto dto):this()
         {
             Name = dto.Name;
             Genre = dto.Genre;

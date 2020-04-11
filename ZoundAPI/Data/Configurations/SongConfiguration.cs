@@ -15,7 +15,7 @@ namespace ZoundAPI.Data.Configurations
                 .IsRequired()
                 .HasMaxLength(50);
 
-            builder.Property(b => b.METADATA)
+            builder.Property(b => b.Metadata)
                 .IsRequired();
 
             builder.HasOne(b => b.Artist);

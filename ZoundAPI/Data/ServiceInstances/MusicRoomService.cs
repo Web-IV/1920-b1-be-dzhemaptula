@@ -16,26 +16,17 @@ namespace ZoundAPI.Data.Repositories
             this._context = context;
         }
 
-        public void Add(MusicRoom room)
-        {
-            this._context.MusicRooms.Add(room);
-        }
-
         public MusicRoom GetById(int id)
         {
             return _context.MusicRooms.FirstOrDefault(b => b.RoomId.Equals(id));
         }
 
-        public ICollection<User> GetMembersByRoomId(int id) => _context.MusicRooms.FirstOrDefault(b => b.RoomId.Equals(id))?.Members;
+        public ICollection<User> GetMembersByRoomId(int id) =>
+            _context.MusicRooms.FirstOrDefault(b => b.RoomId.Equals(id))?.Members;
 
         public Queue<Song> GetQueuedSongsByRoomId(int id)
         {
             return _context.MusicRooms.FirstOrDefault(b => b.RoomId.Equals(id))?.QueuedSongs;
-        }
-
-        public void SaveChanges()
-        {
-            this._context.SaveChanges();
         }
     }
 }
