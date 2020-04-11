@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Applications\\Web4\\1920-b1-be-dzhemaptula\\ZoundAPI\\ZoundAPI.csproj": {}
+    "C:\\Users\\dzhem\\OneDrive\\Bureaublad\\1920-b1-be-dzhemaptula\\ZoundAPI\\ZoundAPI.csproj": {}
   },
   "projects": {
-    "C:\\Applications\\Web4\\1920-b1-be-dzhemaptula\\ZoundAPI\\ZoundAPI.csproj": {
+    "C:\\Users\\dzhem\\OneDrive\\Bureaublad\\1920-b1-be-dzhemaptula\\ZoundAPI\\ZoundAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Applications\\Web4\\1920-b1-be-dzhemaptula\\ZoundAPI\\ZoundAPI.csproj",
+        "projectUniqueName": "C:\\Users\\dzhem\\OneDrive\\Bureaublad\\1920-b1-be-dzhemaptula\\ZoundAPI\\ZoundAPI.csproj",
         "projectName": "ZoundAPI",
-        "projectPath": "C:\\Applications\\Web4\\1920-b1-be-dzhemaptula\\ZoundAPI\\ZoundAPI.csproj",
+        "projectPath": "C:\\Users\\dzhem\\OneDrive\\Bureaublad\\1920-b1-be-dzhemaptula\\ZoundAPI\\ZoundAPI.csproj",
         "packagesPath": "C:\\Users\\dzhem\\.nuget\\packages\\",
-        "outputPath": "C:\\Applications\\Web4\\1920-b1-be-dzhemaptula\\ZoundAPI\\obj\\",
+        "outputPath": "C:\\Users\\dzhem\\OneDrive\\Bureaublad\\1920-b1-be-dzhemaptula\\ZoundAPI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\"
