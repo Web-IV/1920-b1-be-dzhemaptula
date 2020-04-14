@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Nancy.Json;
+using ZoundAPI.Data.Interfaces;
 using ZoundAPI.Data.Repositories;
 using ZoundAPI.DTOs;
 using ZoundAPI.Models;
@@ -21,10 +22,10 @@ namespace ZoundAPI.Controllers
     public class AccountController : ControllerBase
     {
         private readonly UserManager<IdentityUser> _userManager;
-        private readonly UserService _userService;
+        private readonly IUserService _userService;
         private readonly ILogger<AccountController> _logger;
 
-        public AccountController(UserManager<IdentityUser> userManager, UserService _userService, ILogger<AccountController> _logger)
+        public AccountController(UserManager<IdentityUser> userManager, IUserService _userService, ILogger<AccountController> _logger)
         {
             this._userManager = userManager;
             this._userService = _userService;

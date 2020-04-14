@@ -114,6 +114,7 @@ namespace ZoundAPI.Data.Repositories
 
             //add it to user class
             user.AddFriend(userFriend);
+            friend.AddFriend(userFriend);
 
             //update the context
             _users.Update(user);
@@ -128,6 +129,15 @@ namespace ZoundAPI.Data.Repositories
             _context.UserFriendRequests.Remove(friendReq);
             _context.SaveChanges();
             return userFriend;
+        }
+
+        public UserFriendRequest SendFriendRequest(User user, User friend)
+        {
+            UserFriendRequest userFriendRequest = new UserFriendRequest(user, friend);
+
+            friend.FriendRequests.Add(userFriendRequest);
+
+            return userFriendRequest;
         }
 
         public ICollection<UserFriendRequest> GetFriendRequestsById(int id)

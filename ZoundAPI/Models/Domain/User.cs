@@ -30,14 +30,11 @@ namespace ZoundAPI.Models.Domain
         }
 
 
-        public void AddFriend(User friend)
-        {
-            AddFriend(new UserFriend(this,friend));
-        }
-
         public void AddFriend(UserFriend userFriend)
         {
+            User friend = userFriend.Friend;
             Friends.Add(userFriend);
+            friend.Friends.Add(new UserFriend(friend, this));
         }
 
         internal void AddFavoriteRoom(FavoriteRoom favoriteRoom)

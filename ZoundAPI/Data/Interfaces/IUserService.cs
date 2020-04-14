@@ -8,6 +8,7 @@ namespace ZoundAPI.Data.Interfaces
 {
     public interface IUserService
     {
+        void Add(User user);
         User GetById(int id);
         ICollection<User> GetAll();
         ICollection<UserFriendRequest> GetFriendRequestsById(int id);
@@ -15,5 +16,6 @@ namespace ZoundAPI.Data.Interfaces
         Task<User> GetByUserNameAsync(string userName); 
         User GetByUserName(string userName);
         UserFriend AcceptFriendRequest(Guid token);
+        UserFriendRequest SendFriendRequest(User user, User friend);
     }
 }
