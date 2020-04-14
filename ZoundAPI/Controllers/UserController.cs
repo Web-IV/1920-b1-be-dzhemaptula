@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ZoundAPI.Data.Interfaces;
+using ZoundAPI.Data.ServiceInstances;
 using ZoundAPI.DTOs;
 using ZoundAPI.Models.Domain;
 
@@ -74,7 +75,7 @@ namespace ZoundAPI.Controllers
             try
             {
                 var user = await GetCurrentUser();
-                var  result = _userService.GetFriendRequestsById(user.UserId);
+                var result = _userService.GetFriendRequestsById(user.UserId);
                 _logger.LogInformation($"Userid {user.UserId} tried to get friend requests.");
                 return new OkObjectResult(result);
             }
@@ -124,7 +125,7 @@ namespace ZoundAPI.Controllers
         {
             var result = await _userService.GetByUserNameAsync(username);
             if (result != null)
-                return new OkObjectResult(result);
+                return new OkObjectResult(new FilterUserService().ConvertToDto(result));
             return NotFound();
         }
 
@@ -134,9 +135,9 @@ namespace ZoundAPI.Controllers
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public ActionResult GetAllUsers()
         {
-            var result = _userService.GetAll();
-            if (result != null)
-                return new OkObjectResult(result);
+            var users = _userService.GetAll();
+            if (users!=null)
+                return new OkObjectResult(new FilterUserService().ConvertMultipleUsersToDtoList(users));
             return NotFound();
         }
 

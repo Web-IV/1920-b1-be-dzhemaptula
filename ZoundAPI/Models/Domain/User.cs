@@ -26,6 +26,7 @@ namespace ZoundAPI.Models.Domain
         {
             Firstname = fName;
             Lastname = lName;
+            UserName = fName + lName;
         }
 
 

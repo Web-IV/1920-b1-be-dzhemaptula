@@ -8,6 +8,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Primitives;
 using Nancy;
 using ZoundAPI.Data.Interfaces;
+using ZoundAPI.Data.ServiceInstances;
 using ZoundAPI.DTOs;
 using ZoundAPI.Models.Domain;
 
@@ -49,18 +50,20 @@ namespace ZoundAPI.Data.Repositories
 
         public User GetById(int id)
         {
-
             return _users.FirstOrDefault(b => b.UserId.Equals(id));
         }
 
         public ICollection<UserDto> GetFriendsByUserId(int id)
         {
+            //First get a list of friend ids
+
             //return _users.Include(x => x.Friends).ToList().FirstOrDefault(b => b.UserId.Equals(id));
             var ids = _users.Include(x => x.Friends)
                        .FirstOrDefault(x => x.UserId.Equals(id))
                        ?.Friends.Select(x => x.FriendId).ToList()
                    ?? throw new ArgumentException("Something went wrong at requests.");
             ICollection<UserDto> result = new HashSet<UserDto>();
+
             // return _users.Where(us => ids.Contains(us.UserId)).GroupBy(x => new
             // {
             //     x.UserId, x.Email, x.UserName, x.Firstname, x.Lastname
@@ -68,16 +71,18 @@ namespace ZoundAPI.Data.Repositories
 
             _users.Where(u => ids.Contains(u.UserId)).ToList().ForEach(x =>
             {
-                result.Add(new UserDto(x.UserId, x.Email, x.UserName, x.Firstname, x.Lastname));
+                //add all the friends to a filtered clean DTO to send to request
+                result.Add(new FilterUserService().ConvertToDto(x));
             });
+
             /*new UserDto(
-                {
-                    UserId = x.UserId,
-                    Email = x.Email,
-                    FirstName = x.Firstname,
-                    LastName = x.Lastname, 
-                    UserName = x.UserName
-                    */
+                
+            UserId = x.UserId,
+            Email = x.Email,
+            FirstName = x.Firstname,
+            LastName = x.Lastname, 
+            UserName = x.UserName
+            */
 
             return result;
         }
