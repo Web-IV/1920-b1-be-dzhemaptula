@@ -93,7 +93,7 @@ namespace ZoundAPI.Data
             var friend = new UserFriend(dzhem, nick);
             var friendReq = new UserFriendRequest(dzhem, tijl);
             dzhem.AddFriend(friend);
-            tijl.FriendRequests.Add(friendReq);
+            dzhem.FriendRequests.Add(friendReq);
             _context.UserFriends.Add(friend);
             _context.UserFriendRequests.Add(friendReq);
 

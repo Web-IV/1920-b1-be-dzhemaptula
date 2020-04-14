@@ -5,23 +5,23 @@ namespace ZoundAPI.Models.Domain
 {
     public class UserFriendRequest
     {
-        [ForeignKey(nameof(UserId))]
-        public User User { get; set; }
-        public int UserId { get; set; }
+        [ForeignKey(nameof(RequestedToID))]
+        public User ReuqestedTo { get; set; }
+        public int RequestedToID { get; set; }
 
-        [ForeignKey(nameof(FriendId))]
-        public User Friend { get; set; }
-        public int FriendId { get; set; }
+        [ForeignKey(nameof(RequestedFromID))]
+        public User RequestedFrom { get; set; }
+        public int RequestedFromID { get; set; }
         public Guid Token { get; set; }
 
-        public UserFriendRequest(User user, User friend)
+        public UserFriendRequest(User reuqestedTo, User requestedFrom)
         {
-            User = user;
-            Friend = friend;
+            ReuqestedTo = reuqestedTo;
+            RequestedFrom = requestedFrom;
             //Generates a token like "65a10c6e-5fd5-4f04-8175-8601cdb5ffcd"
             Token = Guid.NewGuid();
-            UserId = user.UserId;
-            FriendId = friend.UserId;
+            RequestedToID = reuqestedTo.UserId;
+            RequestedFromID = requestedFrom.UserId;
         }
 
         public UserFriendRequest()

@@ -127,7 +127,7 @@ namespace ZoundAPI
                 endpoints.MapControllers();
             });
 
-            datainit.InitAsync().Wait();
+            //datainit.InitAsync().Wait();
 
 
         }

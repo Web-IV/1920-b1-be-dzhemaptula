@@ -15,7 +15,7 @@ using ZoundAPI.Models.Domain;
 
 namespace ZoundAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("users")]
     [ApiController]
     public class UserController : ControllerBase
     {
@@ -31,12 +31,12 @@ namespace ZoundAPI.Controllers
         }
 
 
-        // GET: api/User/5
+        // GET: api/ReuqestedTo/5
         /// <summary>
         /// Gets a user by id
         /// </summary>
         /// <param name="id"></param>
-        /// <returns>200OK if User found by id along with User. 404 if no user found by id.</returns>
+        /// <returns>200OK if ReuqestedTo found by id along with ReuqestedTo. 404 if no user found by id.</returns>
         [HttpGet("id/{id}")]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -53,15 +53,17 @@ namespace ZoundAPI.Controllers
         [HttpGet("add/{id}")]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<ActionResult> AddFriend(int id)
         {
-            var user = await GetCurrentUser();
-            var friendUser = _userService.GetById(id);
+            var requestedFrom = await GetCurrentUser();
+            var requestedTo = _userService.GetById(id);
 
             //Creates a request with unique token, friendUSer will get prompted to accept the request
-            UserFriendRequest friendReq = new UserFriendRequest(user, friendUser);
+            //UserFriendRequest friendReq = new UserFriendRequest(user, friendUser);
 
-            var result = _userService.GetById(id);
+            var result = _userService.SendFriendRequest(requestedTo, requestedFrom);
+
             if (result != null)
                 return new OkObjectResult(result);
             return NotFound();
@@ -70,6 +72,7 @@ namespace ZoundAPI.Controllers
         [HttpGet("requests")]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<ActionResult> GetFriendRequests()
         {
             try
@@ -89,6 +92,7 @@ namespace ZoundAPI.Controllers
         [HttpGet("accept/{token}")]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<ActionResult> AcceptFriend(string token)
         {
             try
@@ -106,6 +110,7 @@ namespace ZoundAPI.Controllers
         [HttpGet("id/{id}/friends")]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<ActionResult> GetFriendsOfUser(int id)
         {
             var user = await GetCurrentUser();
@@ -121,6 +126,7 @@ namespace ZoundAPI.Controllers
         [HttpGet("u/{username}")]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<ActionResult> GetByUserName(string username)
         {
             var result = await _userService.GetByUserNameAsync(username);
@@ -129,7 +135,7 @@ namespace ZoundAPI.Controllers
             return NotFound();
         }
 
-        [HttpGet("/all")]
+        [HttpGet("all")]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]

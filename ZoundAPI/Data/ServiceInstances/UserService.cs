@@ -57,16 +57,16 @@ namespace ZoundAPI.Data.Repositories
         {
             //First get a list of friend ids
 
-            //return _users.Include(x => x.Friends).ToList().FirstOrDefault(b => b.UserId.Equals(id));
+            //return _users.Include(x => x.Friends).ToList().FirstOrDefault(b => b.RequestedToID.Equals(id));
             var ids = _users.Include(x => x.Friends)
                        .FirstOrDefault(x => x.UserId.Equals(id))
                        ?.Friends.Select(x => x.FriendId).ToList()
                    ?? throw new ArgumentException("Something went wrong at requests.");
             ICollection<UserDto> result = new HashSet<UserDto>();
 
-            // return _users.Where(us => ids.Contains(us.UserId)).GroupBy(x => new
+            // return _users.Where(us => ids.Contains(us.RequestedToID)).GroupBy(x => new
             // {
-            //     x.UserId, x.Email, x.UserName, x.Firstname, x.Lastname
+            //     x.RequestedToID, x.Email, x.UserName, x.Firstname, x.Lastname
             // }).ToList();
 
             _users.Where(u => ids.Contains(u.UserId)).ToList().ForEach(x =>
@@ -77,7 +77,7 @@ namespace ZoundAPI.Data.Repositories
 
             /*new UserDto(
                 
-            UserId = x.UserId,
+            RequestedToID = x.RequestedToID,
             Email = x.Email,
             FirstName = x.Firstname,
             LastName = x.Lastname, 
@@ -97,16 +97,16 @@ namespace ZoundAPI.Data.Repositories
             var friendReq = _context.UserFriendRequests.FirstOrDefault(x => x.Token.Equals(token));
             //if friendreq was not found with token, throw error
             if (friendReq == null)
-                throw new ArgumentException("Friend request not found.");
+                throw new ArgumentException("RequestedFrom request not found.");
 
-            var user = _users.FirstOrDefault(x => x.UserId.Equals(friendReq.UserId));
-            var friend = _users.FirstOrDefault(x => x.UserId.Equals(friendReq.FriendId));
+            var user = _users.FirstOrDefault(x => x.UserId.Equals(friendReq.RequestedToID));
+            var friend = _users.FirstOrDefault(x => x.UserId.Equals(friendReq.RequestedFromID));
 
             //if user or friend wasn't found in db, friend req deleted
             if (user == null || friend == null)
             {
                 _context.UserFriendRequests.Remove(friendReq);
-                throw new ArgumentException("User or friend not found.");
+                throw new ArgumentException("ReuqestedTo or friend not found.");
             }
 
             //create new user friend
@@ -114,7 +114,6 @@ namespace ZoundAPI.Data.Repositories
 
             //add it to user class
             user.AddFriend(userFriend);
-            friend.AddFriend(userFriend);
 
             //update the context
             _users.Update(user);
@@ -123,7 +122,7 @@ namespace ZoundAPI.Data.Repositories
             //check if the friendreq is successfully saved in the db, if so, delete the friendreq row
             if (_context.UserFriends.FirstOrDefault(x => x.Equals(userFriend)) == null)
             {
-                _logger.LogInformation($"Error UserService>> User: {user.UserName}, friend: {friend.UserName}");
+                _logger.LogInformation($"Error in AcceptFriendRequest <UserService> >>> ReuqestedTo: {user.UserName}, friend: {friend.UserName}");
                 throw new ArgumentException("Something went wrong in accepting friend request.");
             }
             _context.UserFriendRequests.Remove(friendReq);
@@ -131,21 +130,32 @@ namespace ZoundAPI.Data.Repositories
             return userFriend;
         }
 
-        public UserFriendRequest SendFriendRequest(User user, User friend)
+        public UserFriendRequest SendFriendRequest(User requestedTo, User requestedFrom)
         {
-            UserFriendRequest userFriendRequest = new UserFriendRequest(user, friend);
+            UserFriendRequest friendReq = new UserFriendRequest(requestedTo, requestedFrom);
 
-            friend.FriendRequests.Add(userFriendRequest);
-
-            return userFriendRequest;
+            try
+            {
+                requestedTo.FriendRequests.Add(friendReq);
+            }
+            catch (Exception e)
+            {
+                _logger.LogInformation($"Error in SendFriendRequest <UserService> >>> {e.Message}");
+                throw new ArgumentException("Something went wrong sending friend request.");
+            }
+            _context.UserFriendRequests.Add(friendReq);
+            _context.SaveChanges();
+            return friendReq;
         }
 
         public ICollection<UserFriendRequest> GetFriendRequestsById(int id)
         {
-            return _users.Include(x => x.FriendRequests)
+            return _users
+                       .Include(x => x.FriendRequests)
+                       .ThenInclude(x => x.RequestedFrom)
                 .FirstOrDefault(x => x.UserId.Equals(id))
                 ?.FriendRequests
-                   ?? throw new ArgumentException("Something went wrong at requests.");
+                   ?? throw new ArgumentException("Something went wrong at retrieving requests.");
         }
     }
 }

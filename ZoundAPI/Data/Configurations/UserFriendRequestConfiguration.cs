@@ -11,16 +11,16 @@ namespace ZoundAPI.Data.Configurations
         {
             builder.ToTable("UserFriendRequests");
 
-            builder.HasKey(f => new { f.UserId, f.FriendId });
+            builder.HasKey(f => new { UserId = f.RequestedToID, FriendId = f.RequestedFromID });
 
-            builder.HasOne(pt => pt.Friend)
+            builder.HasOne(pt => pt.RequestedFrom)
                 .WithMany()
-                .HasForeignKey(pt => pt.FriendId)
+                .HasForeignKey(pt => pt.RequestedFromID)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            builder.HasOne(pt => pt.User)
+            builder.HasOne(pt => pt.ReuqestedTo)
                 .WithMany(p => p.FriendRequests)
-                .HasForeignKey(pt => pt.UserId);
+                .HasForeignKey(pt => pt.RequestedToID);
 
 
         }
