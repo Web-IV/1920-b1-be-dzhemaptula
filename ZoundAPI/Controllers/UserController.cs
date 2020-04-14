@@ -65,7 +65,7 @@ namespace ZoundAPI.Controllers
             var result = _userService.SendFriendRequest(requestedTo, requestedFrom);
 
             if (result != null)
-                return new OkObjectResult(result);
+                return new OkResult();
             return NotFound();
         }
 
@@ -79,7 +79,7 @@ namespace ZoundAPI.Controllers
             {
                 var user = await GetCurrentUser();
                 var result = _userService.GetFriendRequestsById(user.UserId);
-                _logger.LogInformation($"Userid {user.UserId} tried to get friend requests.");
+                //_logger.LogInformation($"Userid {user.UserId} tried to get friend requests.");
                 return new OkObjectResult(result);
             }
             catch (ArgumentException e)
@@ -115,7 +115,7 @@ namespace ZoundAPI.Controllers
         {
             var user = await GetCurrentUser();
 
-            _logger.LogInformation($"Called by userid {user.UserId}>> GetFriendsOfUser({id}) \n Claims>> {User.Claims}");
+            //_logger.LogInformation($"Called by userid {user.UserId}>> GetFriendsOfUser({id}) \n Claims>> {User.Claims}");
 
             var result = _userService.GetFriendsByUserId(id);
             if (result != null)
@@ -149,11 +149,15 @@ namespace ZoundAPI.Controllers
 
         private async Task<User> GetCurrentUser()
         {
-            //First get user claims    
             try
             {
+                //get identity userid from claims
                 string userId = User.Claims.First(c => c.Type == "UserID").Value;
+
+                //get identity class
                 var identityUser = await _userManager.FindByIdAsync(userId);
+
+                //get user class by identity username
                 var user = _userService.GetByUserName(identityUser.UserName);
                 return user;
             }
