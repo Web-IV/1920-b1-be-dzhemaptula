@@ -8,6 +8,8 @@
       "sslPort": 44337
     }
   },
+  //I Know the keys should not be on github, they were on .gitignore but I updated it to be online for the sake of the project working after cloning.
+  //This way the professors at HoGent can easily clone and run the project without any issues.
   "profiles": {
     "IIS Express": {
       "commandName": "IISExpress",
