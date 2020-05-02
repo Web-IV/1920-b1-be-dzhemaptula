@@ -59,7 +59,7 @@ namespace ZoundAPI.Controllers
         public async Task<IActionResult> Login(LoginDto model)
         {
             var json = new JavaScriptSerializer().Serialize(model);
-            _logger.LogInformation($"Call to /api/account/login with body {json}");
+           //_logger.LogInformation($"Call to /api/account/login with body {json}");
 
             var user = await _userManager.FindByNameAsync(model.UserName);
             if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
