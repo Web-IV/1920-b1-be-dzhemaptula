@@ -61,7 +61,7 @@ namespace ZoundAPI.Controllers
             var json = new JavaScriptSerializer().Serialize(model);
            //_logger.LogInformation($"Call to /api/account/login with body {json}");
 
-            var user = await _userManager.FindByNameAsync(model.UserName);
+            var user = await _userManager.FindByNameAsync(model.Username);
             if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
             {
                 var tokenDescriptor = new SecurityTokenDescriptor
