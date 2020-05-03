@@ -38,16 +38,13 @@ namespace ZoundAPI.Controllers
         //POST : /api/Account/Register
         public async Task<IActionResult> Register(RegisterDto model)
         {
-            if (model.Password == model.PasswordConfirmation)
+            var user = new IdentityUser { UserName = model.Username, Email = model.Email };
+            var result = await _userManager.CreateAsync(user, model.Password);
+            if (result.Succeeded)
             {
-                var user = new IdentityUser { UserName = model.UserName, Email = model.Email };
-                var result = await _userManager.CreateAsync(user, model.Password);
-                if (result.Succeeded)
-                {
-                    User newUser = new User(model.FirstName,model.LastName);
-                    _userService.Add(newUser);
-                    return Ok();
-                }
+                User newUser = new User(model.FirstName, model.LastName);
+                _userService.Add(newUser);
+                return Ok();
             }
             return BadRequest(model);
         }
@@ -59,7 +56,7 @@ namespace ZoundAPI.Controllers
         public async Task<IActionResult> Login(LoginDto model)
         {
             var json = new JavaScriptSerializer().Serialize(model);
-           //_logger.LogInformation($"Call to /api/account/login with body {json}");
+            //_logger.LogInformation($"Call to /api/account/login with body {json}");
 
             var user = await _userManager.FindByNameAsync(model.Username);
             if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
