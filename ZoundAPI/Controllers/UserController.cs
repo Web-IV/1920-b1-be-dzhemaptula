@@ -15,7 +15,7 @@ using ZoundAPI.Models.Domain;
 
 namespace ZoundAPI.Controllers
 {
-    [Route("users")]
+    [Route("api/users")]
     [ApiController]
     public class UserController : ControllerBase
     {

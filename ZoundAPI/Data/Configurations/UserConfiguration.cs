@@ -19,6 +19,9 @@ namespace ZoundAPI.Data.Configurations
                 .HasColumnName("Lastname")
                 .HasMaxLength(50);
 
+            builder.Property(b => b.RoomId).IsRequired(false);
+
+            builder.HasMany(b => b.Comments).WithOne().HasForeignKey(b => b.CommentId);
                 
         }
     }

@@ -9243,21 +9243,19 @@
   },
   "packageFolders": {
     "C:\\Users\\dzhem\\.nuget\\packages\\": {},
-    "C:\\Microsoft\\Xamarin\\NuGet\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Applications\\Web4\\1920-b1-be-dzhemaptula\\ZoundAPI\\ZoundAPI.csproj",
+      "projectUniqueName": "C:\\GitHub\\Web 4\\1920-b1-be-dzhemaptula\\ZoundAPI\\ZoundAPI.csproj",
       "projectName": "ZoundAPI",
-      "projectPath": "C:\\Applications\\Web4\\1920-b1-be-dzhemaptula\\ZoundAPI\\ZoundAPI.csproj",
+      "projectPath": "C:\\GitHub\\Web 4\\1920-b1-be-dzhemaptula\\ZoundAPI\\ZoundAPI.csproj",
       "packagesPath": "C:\\Users\\dzhem\\.nuget\\packages\\",
-      "outputPath": "C:\\Applications\\Web4\\1920-b1-be-dzhemaptula\\ZoundAPI\\obj\\",
+      "outputPath": "C:\\GitHub\\Web 4\\1920-b1-be-dzhemaptula\\ZoundAPI\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Microsoft\\Xamarin\\NuGet\\",
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        "C:\\Microsoft\\Xamarin\\NuGet\\"
       ],
       "configFilePaths": [
         "C:\\Users\\dzhem\\AppData\\Roaming\\NuGet\\NuGet.Config",

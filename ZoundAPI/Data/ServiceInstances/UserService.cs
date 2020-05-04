@@ -35,12 +35,12 @@ namespace ZoundAPI.Data.Repositories
         }
         public async Task<User> GetByUserNameAsync(string userName)
         {
-            return await _users.FirstOrDefaultAsync(x => x.UserName.Equals(userName));
+            return await _users.FirstOrDefaultAsync(x => x.Username.Equals(userName));
         }
 
         public User GetByUserName(string userName)
         {
-            return _users.FirstOrDefault(x => x.UserName.Equals(userName)) ?? throw new ArgumentException("Something went wrong finding user.");
+            return _users.FirstOrDefault(x => x.Username.Equals(userName)) ?? throw new ArgumentException("Something went wrong finding user.");
         }
 
         public ICollection<User> GetAll()
@@ -122,7 +122,7 @@ namespace ZoundAPI.Data.Repositories
             //check if the friendreq is successfully saved in the db, if so, delete the friendreq row
             if (_context.UserFriends.FirstOrDefault(x => x.Equals(userFriend)) == null)
             {
-                _logger.LogInformation($"Error in AcceptFriendRequest <UserService> >>> ReuqestedTo: {user.UserName}, friend: {friend.UserName}");
+                _logger.LogInformation($"Error in AcceptFriendRequest <UserService> >>> ReuqestedTo: {user.Username}, friend: {friend.Username}");
                 throw new ArgumentException("Something went wrong in accepting friend request.");
             }
             _context.UserFriendRequests.Remove(friendReq);

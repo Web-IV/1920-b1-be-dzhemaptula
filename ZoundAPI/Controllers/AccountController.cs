@@ -42,7 +42,7 @@ namespace ZoundAPI.Controllers
             var result = await _userManager.CreateAsync(user, model.Password);
             if (result.Succeeded)
             {
-                User newUser = new User(model.FirstName, model.LastName);
+                User newUser = new User(model.FirstName, model.LastName, model.Email);
                 _userService.Add(newUser);
                 return Ok();
             }

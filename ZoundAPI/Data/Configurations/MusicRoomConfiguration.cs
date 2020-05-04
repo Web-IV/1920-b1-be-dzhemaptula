@@ -15,8 +15,8 @@ namespace ZoundAPI.Data.Configurations
                 .IsRequired()
                 .HasMaxLength(50);
 
-            builder.HasMany(b => b.Members);
             builder.HasMany(b => b.QueuedSongs);
+            builder.HasMany(b => b.Members).WithOne().HasForeignKey(b => b.RoomId).OnDelete(DeleteBehavior.SetNull);
         }
     }
 }

@@ -63,22 +63,22 @@ namespace ZoundAPI.Data
 
         private void InitData()
         {
-            var dzhem = new User("Dzhem", "Aptula");
-            var nick = new User("Nick", "Lersberghe");
-            var tijl = new User("Tijl", "Zwartjes");
+            var dzhem = new User("Dzhem", "Aptula", "dzhem.aptula@gmail.com");
+            var nick = new User("Nick", "Lersberghe", "nick@gmail.com");
+            var tijl = new User("Tijl", "Zwartjes", "tijl@hotmail.com");
             var users = _context.Users;
-            dzhem.UserName = "dzhemaptula";
-            nick.UserName = "nicklersberghe";
+            dzhem.Username = "dzhemaptula";
+            nick.Username = "nicklersberghe";
             users.Add(dzhem);
             users.Add(nick);
-            users.Add(new User("Janne", "Vschep"));
+            users.Add(new User("Janne", "Vschep", "jannev@gmail.com"));
             users.Add(tijl);
-            users.Add(new User("John", "Cena"));
-            users.Add(new User("Billie", "Eilish"));
-            users.Add(new User("Joseph", "Stalin"));
-            users.Add(new User("Napoleon", "Bonaparte"));
-            users.Add(new User("Post", "Malone"));
-            users.Add(new User("Lil", "Pump"));
+            users.Add(new User("John", "Cena", "cantcme@wwe.org"));
+            users.Add(new User("Billie", "Eilish", "liketheothergirls@unoriginal.com"));
+            users.Add(new User("Joseph", "Stalin", "gulag@comrade.gulu"));
+            users.Add(new User("Napoleon", "Bonaparte", "short@men.riseup"));
+            users.Add(new User("Post", "Malone", "water@melo.ne"));
+            users.Add(new User("Lil", "Pump", "plum6969@esket.it"));
 
             _context.SaveChanges();
 

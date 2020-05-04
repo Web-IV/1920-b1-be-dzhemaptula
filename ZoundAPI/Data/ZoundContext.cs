@@ -13,6 +13,8 @@ namespace ZoundAPI.Data
         public DbSet<Artist> Artists { get; set; }
         public DbSet<UserFriend> UserFriends { get; set; }
         public DbSet<UserFriendRequest> UserFriendRequests { get; set; }
+        public DbSet<Comment> Comments { get; set; }
+        public DbSet<Post> Posts { get; set; }
 
         public ZoundContext(DbContextOptions<ZoundContext> options)
             : base(options)
@@ -29,6 +31,7 @@ namespace ZoundAPI.Data
             builder.ApplyConfiguration(new UserFriendRequestConfiguration());
             builder.ApplyConfiguration(new FeaturedArtistConfiguration());
             builder.ApplyConfiguration(new FavoriteRoomConfiguration());
+            builder.ApplyConfiguration(new PostConfiguration());
         }
 
     }

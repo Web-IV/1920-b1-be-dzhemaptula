@@ -12,7 +12,7 @@ namespace ZoundAPI.Data.ServiceInstances
     {
         public UserDto ConvertToDto(User user)
         {
-            return new UserDto(user.UserId, user.Email, user.UserName, user.Firstname, user.Lastname);
+            return new UserDto(user.UserId, user.Email, user.Username, user.Firstname, user.Lastname);
         }
 
         public List<UserDto> ConvertMultipleUsersToDtoList(ICollection<User> users)
@@ -20,7 +20,7 @@ namespace ZoundAPI.Data.ServiceInstances
             List<UserDto> result = new List<UserDto>();
             foreach (var user in users)
             {
-                result.Add(new UserDto(user.UserId, user.Email, user.UserName, user.Firstname, user.Lastname));
+                result.Add(new UserDto(user.UserId, user.Email, user.Username, user.Firstname, user.Lastname));
             }
 
             return result;

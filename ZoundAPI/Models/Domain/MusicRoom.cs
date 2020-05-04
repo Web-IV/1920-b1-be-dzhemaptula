@@ -9,8 +9,8 @@ namespace ZoundAPI.Models.Domain
         public string Name { get; set; }
         public string Genre { get; private set; }
         public string Description { get; set; }
-        public ICollection<User> Members { get; set; }
-        public Queue<Song> QueuedSongs { get; set; }
+        public virtual ICollection<User> Members { get; private set; }
+        public virtual Queue<Song> QueuedSongs { get; set; }
 
         public MusicRoom()
         {
