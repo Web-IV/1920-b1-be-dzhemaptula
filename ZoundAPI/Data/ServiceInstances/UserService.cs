@@ -1,18 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Primitives;
-using Nancy;
 using ZoundAPI.Data.Interfaces;
-using ZoundAPI.Data.ServiceInstances;
 using ZoundAPI.DTOs;
 using ZoundAPI.Models.Domain;
 
-namespace ZoundAPI.Data.Repositories
+namespace ZoundAPI.Data.ServiceInstances
 {
     public class UserService : IUserService
     {
@@ -33,14 +30,20 @@ namespace ZoundAPI.Data.Repositories
 
             _context.SaveChanges();
         }
-        public async Task<User> GetByUserNameAsync(string userName)
+        public async Task<User> GetByUserNameAsync(string username)
         {
-            return await _users.FirstOrDefaultAsync(x => x.Username.Equals(userName));
+            return await _users.FirstOrDefaultAsync(x => x.Username.Equals(username));
         }
 
-        public User GetByUserName(string userName)
+        public User GetByUserName(string username)
         {
-            return _users.FirstOrDefault(x => x.Username.Equals(userName)) ?? throw new ArgumentException("Something went wrong finding user.");
+            return _users.FirstOrDefault(x => x.Username.Equals(username)) ?? throw new ArgumentException("Something went wrong finding user.");
+        }
+
+        public bool UsernameAvailable(string username)
+        {
+            var user = _users.FirstOrDefault(x => x.Username.Equals(username));
+            return user == null;
         }
 
         public ICollection<User> GetAll()
@@ -106,7 +109,7 @@ namespace ZoundAPI.Data.Repositories
             if (user == null || friend == null)
             {
                 _context.UserFriendRequests.Remove(friendReq);
-                throw new ArgumentException("ReuqestedTo or friend not found.");
+                throw new ArgumentException("RequestedTo or friend not found.");
             }
 
             //create new user friend

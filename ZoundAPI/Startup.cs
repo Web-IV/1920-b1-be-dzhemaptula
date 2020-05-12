@@ -13,7 +13,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using ZoundAPI.Data;
 using ZoundAPI.Data.Interfaces;
-using ZoundAPI.Data.Repositories;
+using ZoundAPI.Data.ServiceInstances;
 using ZoundAPI.Options;
 
 namespace ZoundAPI

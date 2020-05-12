@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using ZoundAPI.Data.Interfaces;
 using ZoundAPI.Models.Domain;
 
-namespace ZoundAPI.Data.Repositories
+namespace ZoundAPI.Data.ServiceInstances
 {
     public class ArtistService : IArtistService
     {

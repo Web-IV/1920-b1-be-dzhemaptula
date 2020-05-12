@@ -33,6 +33,13 @@ namespace ZoundAPI.Models.Domain
             Email = email.ToLower();
         }
 
+        public User(string fName, string lName, string email, string username) : this()
+        {
+            Firstname = fName;
+            Lastname = lName;
+            Username = username;
+            Email = email.ToLower();
+        }
 
         public void AddFriend(UserFriend userFriend)
         {

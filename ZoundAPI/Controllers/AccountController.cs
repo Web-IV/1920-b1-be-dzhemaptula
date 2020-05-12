@@ -10,7 +10,6 @@ using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Nancy.Json;
 using ZoundAPI.Data.Interfaces;
-using ZoundAPI.Data.Repositories;
 using ZoundAPI.DTOs;
 using ZoundAPI.Models;
 using ZoundAPI.Models.Domain;
@@ -38,13 +37,37 @@ namespace ZoundAPI.Controllers
         //POST : /api/Account/Register
         public async Task<IActionResult> Register(RegisterDto model)
         {
-            var user = new IdentityUser { UserName = model.Username, Email = model.Email };
-            var result = await _userManager.CreateAsync(user, model.Password);
+            if (!_userService.UsernameAvailable(model.Username))
+            {
+                return BadRequest(new { message = "Username already taken." });
+            }
+            var identityUser = new IdentityUser { UserName = model.Username, Email = model.Email };
+            var result = await _userManager.CreateAsync(identityUser, model.Password);
             if (result.Succeeded)
             {
-                User newUser = new User(model.FirstName, model.LastName, model.Email);
+                User newUser = new User(model.FirstName, model.LastName, model.Email, model.Username);
                 _userService.Add(newUser);
-                return Ok();
+                var tokenDescriptor = new SecurityTokenDescriptor
+                {
+                    Subject = new ClaimsIdentity(new Claim[]
+                    {
+                        new Claim("UserID", identityUser.Id),
+                    }),
+                    Expires = DateTime.UtcNow.AddMinutes(5),
+                    SigningCredentials = new SigningCredentials(
+                        new SymmetricSecurityKey(
+                            Encoding.UTF8.GetBytes(Environment.GetEnvironmentVariable("SignInKey"))),
+                        SecurityAlgorithms.HmacSha256Signature)
+                };
+                var tokenHandler = new JwtSecurityTokenHandler();
+                var securityToken = tokenHandler.CreateToken(tokenDescriptor);
+                var token = tokenHandler.WriteToken(securityToken);
+
+                User modelUser = newUser;
+
+                UserDto user = new UserDto(modelUser.UserId, modelUser.Email, modelUser.Username, modelUser.Firstname, modelUser.Lastname);
+
+                return Ok(new { token, userdto = user });
             }
             return BadRequest(model);
         }
@@ -58,14 +81,14 @@ namespace ZoundAPI.Controllers
             var json = new JavaScriptSerializer().Serialize(model);
             //_logger.LogInformation($"Call to /api/account/login with body {json}");
 
-            var user = await _userManager.FindByNameAsync(model.Username);
-            if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
+            var identityUser = await _userManager.FindByNameAsync(model.Username);
+            if (identityUser != null && await _userManager.CheckPasswordAsync(identityUser, model.Password))
             {
                 var tokenDescriptor = new SecurityTokenDescriptor
                 {
                     Subject = new ClaimsIdentity(new Claim[]
                     {
-                        new Claim("UserID", user.Id),
+                        new Claim("UserID", identityUser.Id),
                     }),
                     Expires = DateTime.UtcNow.AddMinutes(5),
                     SigningCredentials = new SigningCredentials(
@@ -79,9 +102,9 @@ namespace ZoundAPI.Controllers
 
                 User modelUser = _userService.GetByUserName(model.Username);
 
-                UserDto userdto = new UserDto(modelUser.UserId , modelUser.Email, modelUser.Username, modelUser.Firstname, modelUser.Lastname);
+                UserDto user = new UserDto(modelUser.UserId , modelUser.Email, modelUser.Username, modelUser.Firstname, modelUser.Lastname);
 
-                return Ok(new { token, userdto });
+                return Ok(new { token, userdto = user });
             }
             return BadRequest(new { message = "Username or password is incorrect." });
 
