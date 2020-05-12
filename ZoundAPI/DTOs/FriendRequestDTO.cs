@@ -6,9 +6,9 @@ namespace ZoundAPI.DTOs
     public class FriendRequestDTO
     {
         [Required]
-        public int UserId { get; set; }
+        public int RequestedToId { get; set; }
         [Required]
-        public string FriendId { get; set; }
+        public string RequestedFromId { get; set; }
         [Required]
         public Guid Token { get; set; }
 

@@ -17,7 +17,7 @@
       "launchUrl": "swagger",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "ConnectionStringVariable": "Data Source=(localdb)\\ProjectsV13;Initial Catalog=master;Integrated Security=True;Database=Zound",
+        "ConnectionStringVariable": "Data Source=localhost;Initial Catalog=master;Integrated Security=True;Database=Zound",
         "SignInKey": "mx7kdHygamvcUJPtyUDxh4zx9dfiN9"
       }
     },
@@ -28,7 +28,7 @@
       "applicationUrl": "https://localhost:5001;http://localhost:5000",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Production",
-        "ConnectionStringVariable": "Data Source=(localdb)\\ProjectsV13;Initial Catalog=master;Integrated Security=True;Database=Zound",
+        "ConnectionStringVariable": "Data Source=localhost;Initial Catalog=master;Integrated Security=True;Database=Zound",
         "SignInKey": "mx7kdHygamvcUJPtyUDxh4zx9dfiN9"
       }
     }

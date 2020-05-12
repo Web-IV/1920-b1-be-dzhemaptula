@@ -90,6 +90,8 @@ namespace ZoundAPI.Data.ServiceInstances
             return result;
         }
 
+
+
         public User GetByMail(string email)
         {
             return _users.FirstOrDefault(b => b.Email.Equals(email));
@@ -133,6 +135,36 @@ namespace ZoundAPI.Data.ServiceInstances
             return userFriend;
         }
 
+        UserFriendRequest IUserService.DeleteFriendRequest(Guid token)
+        {
+            var friendReq = _context.UserFriendRequests.FirstOrDefault(x => x.Token.Equals(token));
+            //if friendreq was not found with token, throw error
+            if (friendReq == null)
+                throw new ArgumentException("RequestedFrom request not found.");
+
+            var user = _users.FirstOrDefault(x => x.UserId.Equals(friendReq.RequestedToID));
+            var friend = _users.FirstOrDefault(x => x.UserId.Equals(friendReq.RequestedFromID));
+
+            //if user or friend wasn't found in db, friend req deleted
+            if (user == null || friend == null)
+            {
+                _context.UserFriendRequests.Remove(friendReq);
+                throw new ArgumentException("RequestedTo or friend not found.");
+            }
+
+
+            // //check if the friendreq is successfully saved in the db, if so, delete the friendreq row
+            // if (_context.UserFriends.FirstOrDefault(x => x.Equals(userFriend)) == null)
+            // {
+            //     _logger.LogInformation($"Error in AcceptFriendRequest <UserService> >>> ReuqestedTo: {user.Username}, friend: {friend.Username}");
+            //     throw new ArgumentException("Something went wrong in accepting friend request.");
+            // }
+            _context.UserFriendRequests.Remove(friendReq);
+            _context.SaveChanges();
+            return friendReq;
+        }
+
+
         public UserFriendRequest SendFriendRequest(User requestedTo, User requestedFrom)
         {
             UserFriendRequest friendReq = new UserFriendRequest(requestedTo, requestedFrom);
@@ -155,9 +187,19 @@ namespace ZoundAPI.Data.ServiceInstances
         {
             return _users
                        .Include(x => x.FriendRequests)
-                       .ThenInclude(x => x.RequestedFrom)
+                       .ThenInclude(x => x.RequestedTo)
                 .FirstOrDefault(x => x.UserId.Equals(id))
                 ?.FriendRequests
+                   ?? throw new ArgumentException("Something went wrong at retrieving requests.");
+        }
+
+        public ICollection<UserFriendRequest> GetSentFriendrequestsById(int id)
+        {
+            return _users
+                       .Include(x => x.FriendRequests)
+                       .ThenInclude(x => x.RequestedFrom)
+                       .FirstOrDefault(x => x.UserId.Equals(id))
+                       ?.FriendRequests
                    ?? throw new ArgumentException("Something went wrong at retrieving requests.");
         }
     }

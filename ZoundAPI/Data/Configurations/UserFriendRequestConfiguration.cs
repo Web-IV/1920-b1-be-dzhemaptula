@@ -18,7 +18,7 @@ namespace ZoundAPI.Data.Configurations
                 .HasForeignKey(pt => pt.RequestedFromID)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            builder.HasOne(pt => pt.ReuqestedTo)
+            builder.HasOne(pt => pt.RequestedTo)
                 .WithMany(p => p.FriendRequests)
                 .HasForeignKey(pt => pt.RequestedToID);
 
