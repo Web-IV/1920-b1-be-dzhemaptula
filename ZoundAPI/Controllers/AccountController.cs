@@ -76,7 +76,12 @@ namespace ZoundAPI.Controllers
                 var tokenHandler = new JwtSecurityTokenHandler();
                 var securityToken = tokenHandler.CreateToken(tokenDescriptor);
                 var token = tokenHandler.WriteToken(securityToken);
-                return Ok(new { token });
+
+                User modelUser = _userService.GetByUserName(model.Username);
+
+                UserDto userdto = new UserDto(modelUser.UserId , modelUser.Email, modelUser.Username, modelUser.Firstname, modelUser.Lastname);
+
+                return Ok(new { token, userdto });
             }
             return BadRequest(new { message = "Username or password is incorrect." });
 
