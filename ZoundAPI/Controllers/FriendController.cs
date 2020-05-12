@@ -53,7 +53,7 @@ namespace ZoundAPI.Controllers
         {
             try
             {
-                var result = _userService.AcceptFriendRequest(Guid.Parse(token));
+                var result = _userService.DeleteFriendRequest(Guid.Parse(token));
                 return new OkObjectResult(result);
             }
             catch (ArgumentException e)
