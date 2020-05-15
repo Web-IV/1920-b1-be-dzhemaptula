@@ -39,6 +39,7 @@ namespace ZoundAPI
                 x.SwaggerDoc("v1", new OpenApiInfo { Title = "Zound API", Version = "v1" });
             });
             services.AddScoped<IUserService, UserService>();
+            
             services.AddScoped<IArtistService, ArtistService>();
             services.AddScoped<IMusicRoomService, MusicRoomService>();
             services.AddScoped<ISongService, SongService>();
@@ -89,6 +90,22 @@ namespace ZoundAPI
                     ClockSkew = TimeSpan.Zero
                 };
             });
+
+            // services.AddAuthentication(x =>
+            // {
+            //     x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+            //     x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            // }).AddJwtBearer(x => {
+            //     x.RequireHttpsMetadata = false;
+            //     x.SaveToken = true;
+            //     x.TokenValidationParameters = new TokenValidationParameters
+            //     {
+            //         ValidateIssuerSigningKey = true,
+            //         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Tokens:Key"])),
+            //         ValidateIssuer = false,
+            //         ValidateAudience = false
+            //     };
+            // });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -13,7 +13,7 @@ namespace ZoundAPI.Data.Interfaces
         ICollection<User> GetAll();
         ICollection<UserFriendRequest> GetFriendRequestsById(int id);
         ICollection<UserFriendRequest> GetSentFriendrequestsById(int id);
-        ICollection<UserDto> GetFriendsByUserId(int id);
+        ICollection<UserFriend> GetFriendsByUserId(int id);
         Task<User> GetByUserNameAsync(string username); 
         User GetByUserName(string username);
         bool UsernameAvailable(string username);

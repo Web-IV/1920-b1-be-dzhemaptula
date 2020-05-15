@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -13,6 +14,7 @@ using ZoundAPI.Models.Domain;
 namespace ZoundAPI.Controllers
 {
     [Route("api/[controller]")]
+    [Authorize]
     [ApiController]
     public class FriendController : ControllerBase
     {
@@ -31,12 +33,15 @@ namespace ZoundAPI.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        public async Task<ActionResult> AcceptFriend(string token)
+        public ActionResult AcceptFriend(string token)
         {
             try
             {
                 var result = _userService.AcceptFriendRequest(Guid.Parse(token));
-                return new OkObjectResult(result);
+                UserFriendDTO res = new UserFriendDTO();
+                res.UserId = result.UserId;
+                res.FriendId = result.FriendId;
+                return Ok(res);
             }
             catch (ArgumentException e)
             {
@@ -49,18 +54,38 @@ namespace ZoundAPI.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        public async Task<ActionResult> DeclineFriend(string token)
+        public ActionResult DeclineFriend(string token)
         {
             try
             {
                 var result = _userService.DeleteFriendRequest(Guid.Parse(token));
-                return new OkObjectResult(result);
+                FriendRequestDTO res = new FriendRequestDTO();
+                res.RequestedToId = result.RequestedToId;
+                res.RequestedFromId = result.RequestedFromId;
+                res.Token = result.Token;
+                return Ok(res);
             }
             catch (ArgumentException e)
             {
                 _logger.LogInformation(e.Message);
                 return NotFound(e);
             }
+        }
+
+        [HttpGet("all")]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        public async Task<ActionResult> GetFriendsOfUser()
+        {
+            var user = await GetCurrentUser();
+
+            //_logger.LogInformation($"Called by userid {user.UserId}>> GetFriendsOfUser({id}) \n Claims>> {User.Claims}");
+
+            var result = _userService.GetFriendsByUserId(user.UserId);
+            if (result != null)
+                return new OkObjectResult(result);
+            return NotFound();
         }
 
         [HttpPost("add")]
@@ -87,7 +112,14 @@ namespace ZoundAPI.Controllers
             var result = _userService.SendFriendRequest(requestedTo, requestedFrom);
 
             if (result != null)
-                return Ok(new {result});
+            {
+                FriendRequestDTO res = new FriendRequestDTO();
+                res.RequestedToId = result.RequestedToId;
+                res.RequestedFromId = result.RequestedFromId;
+                res.Token = result.Token;
+                return Ok(res);
+            }
+                
             return NotFound();
         }
 
@@ -120,7 +152,7 @@ namespace ZoundAPI.Controllers
             try
             {
                 var user = await GetCurrentUser();
-                var result = _userService.GetFriendRequestsById(user.UserId);
+                var result = _userService.GetSentFriendrequestsById(user.UserId);
                 //_logger.LogInformation($"Userid {user.UserId} tried to get friend requests.");
                 return new OkObjectResult(result);
             }

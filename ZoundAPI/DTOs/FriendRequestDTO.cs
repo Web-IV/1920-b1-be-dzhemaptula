@@ -8,7 +8,7 @@ namespace ZoundAPI.DTOs
         [Required]
         public int RequestedToId { get; set; }
         [Required]
-        public string RequestedFromId { get; set; }
+        public int RequestedFromId { get; set; }
         [Required]
         public Guid Token { get; set; }
 
