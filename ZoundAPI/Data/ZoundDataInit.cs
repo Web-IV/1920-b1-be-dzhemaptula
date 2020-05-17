@@ -45,6 +45,7 @@ namespace ZoundAPI.Data
             await CreateUser("jannevschep", "janne@vsche.pp", password);
             await CreateUser("josephstalin", "joseph@stal.in", password);
             await CreateUser("johncena", "john@ce.na", password);
+            await CreateUser("web4", "student@hogent.be", "gelukkiggeennetbeans");
         }
 
         private async Task CreateUser(string username, string email, string password)
@@ -79,6 +80,16 @@ namespace ZoundAPI.Data
             users.Add(new User("Napoleon", "Bonaparte", "short@men.riseup"));
             users.Add(new User("Post", "Malone", "water@melo.ne"));
             users.Add(new User("Lil", "Pump", "plum6969@esket.it"));
+            users.Add(new User("student", "hogent", "student@hogent.be", "web4"));
+
+            dzhem.CreatePost("Test title", "Something something musical");
+            dzhem.CreatePost("Second post ever wohoo!",
+                "Today is a special day. Lorem ipsum ipsum lorem simp simp simpson lorem ex dee xasjals alsjdn.");
+            nick.CreatePost("Test post nick", "Nick is the great leader of china wowo");
+            nick.CreatePost("222", "Broo literally laughing rn");
+            tijl.CreatePost("lmfao whaaat", "whats this site");
+            nick.CreatePost("Some dumbo", "Some dumbo just posted something dumb");
+            dzhem.CreatePost("Get off my wall", "NO CYBERBULLYING MAN CMON !!!!");
 
             _context.SaveChanges();
 

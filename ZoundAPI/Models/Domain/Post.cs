@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace ZoundAPI.Models.Domain
 {
@@ -9,25 +7,35 @@ namespace ZoundAPI.Models.Domain
     {
         public int PostId { get; set; }
         public int UserId { get; set; }
+        public User User { get; set; }
         public string Title { get; set; }
         public string Text { get; set; }
         public int Likes { get; private set; }
-        public ICollection<Comment> Comments { get; private set; }
+        public DateTime DatePosted { get; set; }
+        // public ICollection<Comment> Comments { get; private set; }
 
-        public Post(int userId, string title, string text) : this()
+        public Post(User user, string title, string text) : this()
         {
-            this.UserId = userId;
+            this.UserId = user.UserId;
+            this.User = user;
             this.Title = title;
             this.Text = text;
         }
         public Post()
         {
-            Comments = new HashSet<Comment>();
+            this.DatePosted = DateTime.Now;
+            this.Likes = 0;
+            // this.Comments = new HashSet<Comment>();
         }
 
-        public void AddComment(Comment comment)
-        {
-            this.Comments.Add(comment);
-        }
+        // public void AddComment(Comment comment)
+        // {
+        //     this.Comments.Add(comment);
+        // }
+
+        // public void LikePost(/*TODO: Create a list of user id's that liked the post */)
+        // {
+        //     this.Likes += 1;
+        // }
     }
 }

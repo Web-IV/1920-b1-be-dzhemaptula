@@ -19,8 +19,10 @@ namespace ZoundAPI.Data.Configurations
                 .IsRequired()
                 .HasMaxLength(1000);
 
-            builder.HasMany(b => b.Comments).WithOne().HasForeignKey(pt => pt.PostId); ;
-                
+            // builder.HasMany(b => b.Comments).WithOne().HasForeignKey(pt => pt.PostId);
+
+            builder.HasOne(b => b.User).WithMany().HasForeignKey(x => x.UserId).OnDelete(DeleteBehavior.Cascade);
+
         }
     }
 }

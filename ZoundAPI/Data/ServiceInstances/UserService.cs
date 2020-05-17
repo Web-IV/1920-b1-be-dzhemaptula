@@ -111,7 +111,7 @@ namespace ZoundAPI.Data.ServiceInstances
             var friendReq = _context.UserFriendRequests.FirstOrDefault(x => x.Token.Equals(token));
             //if friendreq was not found with token, throw error
             if (friendReq == null)
-                throw new ArgumentException("RequestedFrom request not found.");
+                throw new ArgumentException("Friend request not found.");
 
             var user = _users.FirstOrDefault(x => x.UserId.Equals(friendReq.RequestedToId));
             var friend = _users.FirstOrDefault(x => x.UserId.Equals(friendReq.RequestedFromId));
@@ -120,7 +120,7 @@ namespace ZoundAPI.Data.ServiceInstances
             if (user == null || friend == null)
             {
                 _context.UserFriendRequests.Remove(friendReq);
-                throw new ArgumentException("RequestedTo or friend not found.");
+                throw new ArgumentException("User or friend not found.");
             }
 
             //create new user friend

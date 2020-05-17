@@ -21,8 +21,9 @@ namespace ZoundAPI.Data.Configurations
 
             builder.Property(b => b.RoomId).IsRequired(false);
 
-            builder.HasMany(b => b.Comments).WithOne().HasForeignKey(b => b.CommentId);
-                
+            // builder.HasMany(b => b.Comments).WithOne().HasForeignKey(b => b.CommentId);
+
+            // builder.HasMany(x => x.Posts).WithOne().HasForeignKey(b => b.PostId).OnDelete(DeleteBehavior.SetNull);
         }
     }
 }
