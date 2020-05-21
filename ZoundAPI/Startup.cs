@@ -43,6 +43,7 @@ namespace ZoundAPI
             services.AddScoped<IArtistService, ArtistService>();
             services.AddScoped<IMusicRoomService, MusicRoomService>();
             services.AddScoped<ISongService, SongService>();
+            services.AddScoped<IPostService, PostService>();
             services.AddScoped<ZoundDataInit>();
             services.AddIdentity<IdentityUser, IdentityRole>(o =>
             {

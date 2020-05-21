@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using ZoundAPI.Data.Interfaces;
+using ZoundAPI.DTOs;
 using ZoundAPI.Models.Domain;
 
 namespace ZoundAPI.Data.ServiceInstances
@@ -63,18 +64,18 @@ namespace ZoundAPI.Data.ServiceInstances
         public ICollection<Post> GetByUser(User user)
         {
             return _posts.Where(x => x.UserId.Equals(user.UserId))
-                .Select(x => new Post
+                .Select(post => new Post
                     {
-                        UserId = x.UserId,
+                        UserId = post.UserId,
                         User = new User
                         {
                             Username = user.Username,
                             Firstname = user.Firstname,
                             Lastname = user.Lastname
                         },
-                        Title = x.Title,
-                        Text = x.Text,
-                        DatePosted = x.DatePosted
+                        Title = post.Title,
+                        Text = post.Text,
+                        DatePosted = post.DatePosted
                     }
 
                 )
@@ -84,30 +85,59 @@ namespace ZoundAPI.Data.ServiceInstances
 
         }
 
-        public ICollection<Post> GetPostsByFriends(User user)
+        public ICollection<PostDto> GetPostsByFriends(User user)
         {
+            ICollection<Post> postsToShow = user.Friends.SelectMany(friend => friend.Friend.Posts).ToList();
 
-            return user.Friends
-                .Select(x => x.Friend.Posts
-                    .Select(x => new Post
-                                {
-                                    UserId = x.UserId,
-                                    User = new User
-                                    {
-                                        Username = user.Username,
-                                        Firstname = user.Firstname,
-                                        Lastname = user.Lastname
-                                    },
-                                    Title = x.Title,
-                                    Text = x.Text,
-                                    DatePosted = x.DatePosted
-                                }
-                    )
-                    .OrderBy(x => x.DatePosted)
-                    .Take(200)
-                    .ToList()
-                ).FirstOrDefault() 
-                   ?? throw new ArgumentException("Something went wrong at getting posts from friends");
+            if (user.Posts != null)
+            {
+                foreach (Post ownPost in user.Posts)
+                {
+                    postsToShow.Add(ownPost);
+                }
+            }
+            
+
+            var timelinePosts = postsToShow
+                .Select(post => new PostDto
+                    {
+                        PostId = post.PostId,
+                        UserDto = new UserDto()
+                        {
+                            UserId = post.UserId,
+                            Email = post.User.Email,
+                            Username = post.User.Username,
+                            FirstName = post.User.Firstname,
+                            LastName = post.User.Lastname
+                        },
+                        Title = post.Title,
+                        Text = post.Text,
+                        DatePosted = post.DatePosted
+                    }
+                ).OrderBy(x => x.DatePosted)
+                .ToList();
+
+            return timelinePosts;
+            // return user.Friends
+            //     .Select(friend => friend.Friend.Posts
+            //         .Select(post => new PostDto()
+            //                     {
+            //                         PostId = post.PostId,
+            //                         UserDto = new UserDto()
+            //                         {
+            //                             UserId = post.UserId,
+            //                             Username = post.User.Username,
+            //                             FirstName = post.User.Firstname,
+            //                             LastName = post.User.Lastname
+            //                         },
+            //                         Title = post.Title,
+            //                         Text = post.Text,
+            //                         DatePosted = post.DatePosted
+            //                     }
+            //         )
+            //         .ToList()
+            //     ).FirstOrDefault() 
+            //        ?? throw new ArgumentException("Something went wrong at getting posts from friends");
 
 
             //slow? rewriting

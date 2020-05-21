@@ -21,7 +21,7 @@ namespace ZoundAPI.Data.Configurations
 
             // builder.HasMany(b => b.Comments).WithOne().HasForeignKey(pt => pt.PostId);
 
-            builder.HasOne(b => b.User).WithMany().HasForeignKey(x => x.UserId).OnDelete(DeleteBehavior.Cascade);
+            builder.HasOne(b => b.User).WithMany(b => b.Posts).OnDelete(DeleteBehavior.Cascade);
 
         }
     }

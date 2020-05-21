@@ -16,6 +16,7 @@ namespace ZoundAPI.Data.Interfaces
         ICollection<UserFriend> GetFriendsByUserId(int id);
         Task<User> GetByUserNameAsync(string username); 
         User GetByUserName(string username);
+        User GetByUserNameIncludeFriends(string username);
         bool UsernameAvailable(string username);
         UserFriend AcceptFriendRequest(Guid token);
         UserFriendRequest SendFriendRequest(User user, User friend);

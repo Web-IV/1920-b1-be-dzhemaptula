@@ -225,5 +225,15 @@ namespace ZoundAPI.Data.ServiceInstances
                 })
                 .ToList();
         }
+
+        public User GetByUserNameIncludeFriends(string username)
+        {
+            return _users
+                .Include(x => x.FriendRequests)
+                .Include(x => x.Friends)
+                    .ThenInclude(x => x.Friend.Posts)
+                .Include(x => x.Posts)
+                .FirstOrDefault(x => x.Username.Equals(username));
+        }
     }
 }

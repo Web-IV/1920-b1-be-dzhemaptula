@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ZoundAPI.DTOs;
 using ZoundAPI.Models.Domain;
 
 namespace ZoundAPI.Data.Interfaces
@@ -14,7 +15,7 @@ namespace ZoundAPI.Data.Interfaces
         ICollection<Post> GetByUser(User user);
 
         ICollection<Post> GetAll();
-        ICollection<Post> GetPostsByFriends(User user);
+        ICollection<PostDto> GetPostsByFriends(User user);
         void Delete(Post post);
 
     }
