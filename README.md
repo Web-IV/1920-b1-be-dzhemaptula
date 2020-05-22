@@ -1,8 +1,8 @@
-1920-b1-fe-dzhemaptula
+# 1920-b1-fe-dzhemaptula
 
 ---
 
-#Zound
+# Zound
 
 Frontend: https://github.com/Web-IV/1920-b1-fe-dzhemaptula
 
@@ -36,7 +36,7 @@ Class: 2C1
 
 School year: 2019-2020
 
-Favorite languages: C# and (lots of) Python
+Favorite languages: C# and (lots of) Python :shipit:
 
 Linkedin: https://www.linkedin.com/in/dzhemaptula/
 
