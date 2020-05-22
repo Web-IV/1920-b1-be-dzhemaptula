@@ -79,7 +79,7 @@ namespace ZoundAPI.Data.ServiceInstances
                     }
 
                 )
-                .OrderBy(x => x.DatePosted)
+                .OrderByDescending(x => x.DatePosted)
                 .Take(100)
                 .ToList();
 
@@ -114,7 +114,7 @@ namespace ZoundAPI.Data.ServiceInstances
                         Text = post.Text,
                         DatePosted = post.DatePosted
                     }
-                ).OrderBy(x => x.DatePosted)
+                ).OrderByDescending(x => x.DatePosted)
                 .ToList();
 
             return timelinePosts;
