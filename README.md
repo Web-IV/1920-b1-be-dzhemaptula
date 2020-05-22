@@ -26,23 +26,29 @@ All other users can be used with their usernames and password "password"
 
 ---
 
-#About me
+# About me
+
 First name: Dzhem
+
 Last name: Aptula
+
 Class: 2C1
+
 School year: 2019-2020
+
 Favorite languages: C# and (lots of) Python
+
 Linkedin: https://www.linkedin.com/in/dzhemaptula/
 
 ---
 
-#What is it?
+# What is it?
 
 Zound is a social media in it's early stages. It is a huge project to work on, currently having some key functions like searching/adding friends, and showing their posts.
 
 The goal is to continue this project and over time create a social media website where people go to when they want to talk about music and relax by listening to songs synced with other people.
 
-##Todo's
+## Todo's
 
 - [x] Create backend models
 - [x] Connect a database (localhost)
