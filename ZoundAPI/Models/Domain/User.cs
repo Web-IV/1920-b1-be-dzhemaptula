@@ -9,11 +9,66 @@ namespace ZoundAPI.Models.Domain
     {
         public int UserId { get; set; }
         public int? RoomId { get; set; }
-        public string Email { get; set; }
-        public string Username { get; set; }
-        public string Firstname { get; set; }
-        public string Lastname { get; set; }
-        public virtual ICollection<UserFriend> Friends { get; set; }
+
+        private string _email;
+        public string Email
+        {
+            get => _email;
+            set
+            {
+                if (value.Length > 80 || string.IsNullOrEmpty(value))
+                    throw new ArgumentException("Email invalid.");
+
+                var emailValid = new MailAddress(value);
+
+                if (emailValid.Address != value)
+                    throw new FormatException("Invalid email.");
+                _email = value;
+            }
+        }
+
+        private string _username;
+        public string Username
+        {
+            get => _username;
+            set
+            {
+                if (value.Length > 50 || string.IsNullOrEmpty(value))
+                    throw new ArgumentException("Username invalid.");
+                _username = value;
+            }
+        }
+
+        private string _firstName;
+        public string Firstname
+        {
+            get => _firstName;
+            set
+            {
+                if (value.Length > 25 || string.IsNullOrEmpty(value))
+                    throw new ArgumentException("Firstname invalid.");
+                _firstName = value;
+            }
+        }
+
+        private string _lastName;
+        public string Lastname
+        {
+            get => _lastName;
+            set
+            {
+                if (value.Length > 25 || string.IsNullOrEmpty(value))
+                    throw new ArgumentException("Lastname invalid.");
+                _lastName = value;
+            }
+        }
+
+        public virtual ICollection<UserFriend> Friends
+        {
+            get;
+            set;
+        }
+
         public virtual ICollection<UserFriendRequest> FriendRequests { get; set; }
         public virtual ICollection<FavoriteRoom> FavoriteRooms { get; set; }
         public virtual ICollection<Post> Posts { get; set; }
@@ -30,22 +85,18 @@ namespace ZoundAPI.Models.Domain
         }
 
 
-        
+
 
         public User(string fName, string lName, string email, string username) : this()
         {
-            if (fName.Length > 50 || lName.Length > 50)
-                throw new ArgumentException("First or lastname invalid.");
+
 
             Firstname = fName;
             Lastname = lName;
 
             Username = username;
 
-            var emailValid = new MailAddress(email);
 
-            if (emailValid.Address != email)
-                throw new ArgumentException("Invalid email.");
 
             Email = email.ToLower();
         }
