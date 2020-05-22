@@ -1,13 +1,13 @@
 # 1920-b1-fe-dzhemaptula
 
----
-
 # Zound
 
 Frontend: https://github.com/Web-IV/1920-b1-fe-dzhemaptula
 
 Website is running on: www.dzhem.ysebie.com
 Find the RESTful API swagger on: www.dzhem.ysebie.com/swagger
+
+![](zound.gif)
 
 Use the following account for login:
 
@@ -74,3 +74,14 @@ The goal is to continue this project and over time create a social media website
 - [ ] Use Azure services for hosting, and database
 - [ ] more to come...
 - [ ] GREAT design ...
+
+# Running the application
+
+## Backend
+
+Clone the backend and fire it up. Be sure to uncomment the datainit in startup.cs
+
+## Frontend
+
+Clone the frontend. Before starting it up, you need the npm packages.
+Run npm install before using npm start.

@@ -45,7 +45,7 @@ namespace ZoundAPI.Data
             await CreateUser("jannevschep", "janne@vsche.pp", password);
             await CreateUser("josephstalin", "joseph@stal.in", password);
             await CreateUser("johncena", "john@ce.na", password);
-            await CreateUser("web4", "student@hogent.be", "gelukkiggeennetbeans");
+            await CreateUser("web4", "student@hogent.be", "password");
         }
 
         private async Task CreateUser(string username, string email, string password)
@@ -80,7 +80,8 @@ namespace ZoundAPI.Data
             users.Add(new User("Napoleon", "Bonaparte", "short@men.riseup"));
             users.Add(new User("Post", "Malone", "water@melo.ne"));
             users.Add(new User("Lil", "Pump", "plum6969@esket.it"));
-            users.Add(new User("student", "hogent", "student@hogent.be", "web4"));
+            var web4 = new User("student", "hogent", "student@hogent.be", "web4");
+            users.Add(web4);
 
             dzhem.CreatePost("Test title", "Something something musical");
             dzhem.CreatePost("Second post ever wohoo!",
@@ -90,6 +91,7 @@ namespace ZoundAPI.Data
             tijl.CreatePost("lmfao whaaat", "whats this site");
             nick.CreatePost("Some dumbo", "Some dumbo just posted something dumb");
             dzhem.CreatePost("Get off my wall", "NO CYBERBULLYING MAN CMON !!!!");
+            web4.FriendRequests.Add(new UserFriendRequest(web4, dzhem));
 
             _context.SaveChanges();
 
